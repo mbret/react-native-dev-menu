@@ -1,0 +1,25 @@
+{
+  "name": "rn-dev-toolbox",
+  "version": "0.0.1",
+  "scripts": {
+    "test": "jest",
+    "flow": "flow",
+    "lint": "eslint src/**/*.js"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "react": "16.4.0",
+    "react-native": "0.55.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-plugin-flowtype": "^2.49.3",
+    "eslint-plugin-jest": "^21.17.0",
+    "flow-bin": "^0.74.0",
+    "jest": "^23.1.0"
+  },
+  "main": "src/index.js",
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
