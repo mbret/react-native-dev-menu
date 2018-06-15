@@ -1,3 +1,7 @@
+# rn-dev-toolbox
+
+[![Build Status](https://travis-ci.org/mbret/rn-dev-toolbox.svg?branch=master)](https://travis-ci.org/mbret/rn-dev-toolbox)
+
 ## API
 
 ### .open() / .close() / .toggle()
