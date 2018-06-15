@@ -3,7 +3,7 @@
  */
 import React, { Component } from 'react'
 import {
-  StyleSheet,
+  // StyleSheet,
   View,
   Text,
   Modal,
@@ -16,7 +16,7 @@ export class RNTipsModal extends Component<Props> {
   render () {
     return (
       <Modal
-        animationType="fade"
+        animationType='fade'
         transparent={false}
         visible={this.props.visible}
         onRequestClose={this.props.onRequestClose}>
@@ -40,4 +40,4 @@ export class RNTipsModal extends Component<Props> {
   }
 }
 
-const styles = StyleSheet.create({})
+// const styles = StyleSheet.create({})

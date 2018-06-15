@@ -183,10 +183,10 @@ class RNDevToolbox extends RNDevToolboxBase {
     return (
       <Text>
         {key}: <Text style={{
-        color: Array.isArray(value)
-          ? value[1]
-          : undefined
-      }}>{Array.isArray(value) ? value[0] : value}</Text>
+          color: Array.isArray(value)
+            ? value[1]
+            : undefined
+        }}>{Array.isArray(value) ? value[0] : value}</Text>
       </Text>
     )
   }
@@ -232,7 +232,7 @@ class RNDevToolbox extends RNDevToolboxBase {
 
     return (
       <RNDevToolboxContext.Provider value={this}>
-        <RNTipsModal visible={this.state.tipsModalVisible} onRequestClose={this._toggleTipsModalVisible}/>
+        <RNTipsModal visible={this.state.tipsModalVisible} onRequestClose={this._toggleTipsModalVisible} />
         <View style={styles.container}>
           {this.state.opened && Toolbox}
           {this.props.children}
@@ -250,7 +250,7 @@ class Wrapper extends React.Component<Props> {
   render () {
     return (
       <View style={styles.masterContainer}>
-        {(this.props.enable === false || !__DEV__ && this.props.enable === false) ? (
+        {(this.props.enable === false || (!__DEV__ && this.props.enable === false)) ? (
           <ProductionPolyfill {...this.props} />
         ) : (
           <RNDevToolbox {...this.props} />

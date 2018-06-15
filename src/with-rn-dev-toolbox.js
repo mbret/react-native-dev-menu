@@ -15,7 +15,7 @@ export const withRNDevToolbox = (Component: any) => {
                 {...this.props}
                 reactNativeDevToolbox={rnDevToolbox}
               />
-            );
+            )
           }}
         </RNDevToolboxContext.Consumer>
       )

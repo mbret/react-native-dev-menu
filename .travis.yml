@@ -5,8 +5,8 @@ install:
   - npm i -g npm
   - npm ci
 script:
-  - npm run examples:lint
-  - npm run examples:test
+  - npm run standard
+  - npm run flow
 branches:
   only:
     - master
