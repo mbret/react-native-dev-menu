@@ -11,6 +11,3 @@ branches:
   only:
     - master
     - next
-cache:
-  directories:
-    - "$HOME/.npm"
