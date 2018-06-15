@@ -10,7 +10,10 @@ import {
   TouchableOpacity
 } from 'react-native'
 
-type Props = {};
+type Props = {
+  visible: boolean,
+  onRequestClose: Function
+};
 
 export class RNTipsModal extends Component<Props> {
   render () {

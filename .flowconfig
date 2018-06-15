@@ -15,6 +15,10 @@
 
 ; Ignore metro
 .*/node_modules/metro/.*
+.*/node_modules/metro-cache/.*
+
+; Ignore react-native which is broken for now
+.*/node_modules/react-native/.*
 
 [include]
 

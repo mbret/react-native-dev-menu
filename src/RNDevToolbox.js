@@ -14,16 +14,36 @@ import { RNTipsModal } from './RNTipsModal'
 import { PERSISTENCE_KEY } from './constants'
 import { colors } from './style'
 
+type Action = {
+  name: string,
+  task: Function,
+  label?: string
+}
+
 type Props = {
   persistenceProvider: {
     getItem: Function,
     setItem: Function
-  }
+  },
+  onRef: Function,
+  children: any,
+  onRequestClose: Function,
+  visible: boolean,
+  indicators: any,
+  enable: boolean
+}
+
+type State = {
+  tipsModalVisible: boolean,
+  debug: string,
+  indicators: any,
+  opened: boolean,
+  actions: Array<Action>
 }
 
 export const RNDevToolboxContext = React.createContext({})
 
-class RNDevToolboxBase extends Component<Props> {
+class RNDevToolboxBase extends Component<Props, State> {
   componentDidMount () {
     if (this.props.onRef) {
       this.props.onRef(this)
@@ -32,9 +52,9 @@ class RNDevToolboxBase extends Component<Props> {
 
   registerAction = () => {}
 
-  processAction = () => {}
+  processAction = (name: string) => {}
 
-  debug = () => {}
+  debug = (debug: string) => {}
 
   open = () => {}
 
@@ -51,9 +71,9 @@ class RNDevToolboxBase extends Component<Props> {
   }
 }
 
-class ProductionPolyfill extends RNDevToolboxBase {}
+class ProductionRNDevToolbox extends RNDevToolboxBase {}
 
-class RNDevToolbox extends RNDevToolboxBase {
+class DevelopmentRNDevToolbox extends RNDevToolboxBase {
   constructor (props) {
     super(props)
     this.state = {
@@ -182,11 +202,12 @@ class RNDevToolbox extends RNDevToolboxBase {
     const value = indicators[key]
     return (
       <Text>
-        {key}: <Text style={{
-          color: Array.isArray(value)
-            ? value[1]
-            : undefined
-        }}>{Array.isArray(value) ? value[0] : value}</Text>
+        <Text>{key}: </Text>
+        <Text
+          style={{color: Array.isArray(value) ? value[1] : undefined}}
+        >
+          {Array.isArray(value) ? value[0] : value}
+        </Text>
       </Text>
     )
   }
@@ -232,31 +253,27 @@ class RNDevToolbox extends RNDevToolboxBase {
 
     return (
       <RNDevToolboxContext.Provider value={this}>
-        <RNTipsModal visible={this.state.tipsModalVisible} onRequestClose={this._toggleTipsModalVisible} />
-        <View style={styles.container}>
-          {this.state.opened && Toolbox}
-          {this.props.children}
-          {Button}
+        <View style={styles.masterContainer}>
+          <RNTipsModal visible={this.state.tipsModalVisible} onRequestClose={this._toggleTipsModalVisible} />
+          <View style={styles.container}>
+            {this.state.opened && Toolbox}
+            {this.props.children}
+            {Button}
+          </View>
         </View>
       </RNDevToolboxContext.Provider>
     )
   }
 }
 
-class Wrapper extends React.Component<Props> {
+export class RNDevToolbox extends React.Component<Props> {
   static VALID = colors.colorValid
   static DANGER = colors.colorError
 
   render () {
-    return (
-      <View style={styles.masterContainer}>
-        {(this.props.enable === false || (!__DEV__ && this.props.enable === false)) ? (
-          <ProductionPolyfill {...this.props} />
-        ) : (
-          <RNDevToolbox {...this.props} />
-        )}
-      </View>
-    )
+    const useProd = (this.props.enable === false || (!__DEV__ && this.props.enable === false))
+
+    return useProd ? <ProductionRNDevToolbox {...this.props} /> : <DevelopmentRNDevToolbox {...this.props} />
   }
 }
 
@@ -314,7 +331,3 @@ const styles = StyleSheet.create({
     color: 'white'
   }
 })
-
-export {
-  Wrapper as RNDevToolbox
-}
