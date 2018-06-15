@@ -11,3 +11,9 @@ branches:
   only:
     - master
     - next
+deploy:
+  provider: npm
+  email: bret.maxime@gmail.com
+  api_key: "UtH7MmKmAD9JGaBH+x/Pfa468CtXo4g2/hjdYSoo9KU1vX1ysMuyVa/XkfoJSGfdSiIGH5HtRaKndlgW1kcMS0IRGE2zygwDNDXXtIpCPWsuajkKUJBE1ZnAaIwfAg4A5dzxRMBbSaXdbohE5cF/uar3UCG1HMXi382kJb22Kp1FQNXqlYM/DRQGzTm5dWK1KuXwraYQ4WG/DVqg1r5Nq/CXh2dM4DX9qW+D6ia6ceB2RmxvykXCnMH2m68I2ggaH0qrO6o80cxJtdzSpHipessMpZ0DMVIX697VJ/4OZGpPYIXwwxH8hO4QR9tat/FVAVjLjeGhRevg0zvf62vdZGpP+AZlWNqJyw7SP826kzzhu6XrneY3lkRViF71v3ayJxDa6mCVosFrl4XjEAIlwRqwjGeUmH0Xnb0Uqp3NEp3qhutSfYmB0HYyegBHhaVBwHjCJniN+rrCXA2QU57BnXEzfHeyzBRfdd0KRfwck9eD4liMB+VHfoaKBURt5C2PRP8biRlJ+a7AgbIZuj0xmizEkFR16bxIHegMYFGPmGH2qcXRvClHC1zfjy3fikeF+Mtvn1U40y2xndMo6AlxQJi0jBIe6ksqD0VO2IL+n1DJZYRbBaKH3xUCq3yvdqjAePkCLs0mB3mCqKUBkqO1FFrk2d2h7h+dzGGrM9qcS6A="
+  on:
+    tags: true
