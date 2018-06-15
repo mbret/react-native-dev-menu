@@ -7,10 +7,6 @@ install:
 script:
   - npm run standard
   - npm run flow
-branches:
-  only:
-    - master
-    - next
 deploy:
   provider: npm
   email: bret.maxime@gmail.com
