@@ -12,6 +12,7 @@
     "react-native": "^0.55.0"
   },
   "devDependencies": {
+    "angular-redux": "git+https://github.com/mbret/angular-redux-light.git",
     "babel-eslint": "^8.2.3",
     "babel-preset-react-native": "^4.0.0",
     "eslint": "^4.19.1",
