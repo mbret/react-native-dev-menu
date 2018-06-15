@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+  - "node"
+install:
+  - npm i -g npm
+  - npm ci
+script:
+  - npm run examples:lint
+  - npm run examples:test
+branches:
+  only:
+    - master
+    - next
+cache:
+  directories:
+    - "$HOME/.npm"
