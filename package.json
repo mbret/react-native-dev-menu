@@ -4,7 +4,7 @@
   "scripts": {
     "test": "jest",
     "flow": "flow",
-    "lint": "eslint src/**/*.js"
+    "standard": "standard"
   },
   "dependencies": {},
   "peerDependencies": {
@@ -12,14 +12,27 @@
     "react-native": "^0.55.0"
   },
   "devDependencies": {
+    "babel-eslint": "^8.2.3",
+    "babel-preset-react-native": "^4.0.0",
     "eslint": "^4.19.1",
     "eslint-plugin-flowtype": "^2.49.3",
-    "eslint-plugin-jest": "^21.17.0",
     "flow-bin": "^0.74.0",
-    "jest": "^23.1.0"
+    "jest": "^23.1.0",
+    "react": "^16.4.1",
+    "react-native": "^0.55.4",
+    "standard": "^11.0.1"
   },
   "main": "src/index.js",
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "standard": {
+    "parser": "babel-eslint",
+    "plugins": [
+      "flowtype"
+    ],
+    "globals": [
+      "__DEV__"
+    ]
+  }
 }
