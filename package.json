@@ -9,7 +9,7 @@
   "dependencies": {},
   "peerDependencies": {
     "react": "^16.4.0",
-    "react-native": "^0.55.0"
+    "react-native": "^0.56"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.3",
@@ -18,8 +18,8 @@
     "eslint-plugin-flowtype": "^2.49.3",
     "flow-bin": "^0.74.0",
     "jest": "^23.1.0",
-    "react": "^16.4.1",
-    "react-native": "^0.55.4",
+    "react": "16.4.1",
+    "react-native": "0.56.0-rc.2",
     "standard": "^11.0.1"
   },
   "main": "src/index.js",
