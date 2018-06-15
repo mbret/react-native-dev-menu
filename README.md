@@ -1,7 +1,7 @@
 # rn-dev-toolbox
 
 [![Build Status](https://travis-ci.org/mbret/rn-dev-toolbox.svg?branch=master)](https://travis-ci.org/mbret/rn-dev-toolbox)
-[![npm downloads](https://img.shields.io/npm/dm/rn-dev-toolbox.svg?style=flat-square)](https://www.npmjs.com/package/rn-dev-toolbox)
+[![npm downloads](https://img.shields.io/npm/dt/rn-dev-toolbox.svg)](https://www.npmjs.com/package/rn-dev-toolbox)
 
 ## API
 
