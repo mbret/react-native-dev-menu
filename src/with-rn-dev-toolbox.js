@@ -4,10 +4,10 @@
  *
  */
 import React, { Component } from 'react'
-import { RNDevToolboxContext } from './RNDevToolbox'
+import { RNDevToolboxContext } from './RNDevToolboxContext'
 import hoistStatics from 'hoist-non-react-statics'
 import type { ComponentType } from 'react'
-import type { DevTool } from './index'
+import type { RNDevToolboxInterface } from './RNDevToolboxBase'
 
 /**
  * Inject the dev tool instance into the component.
@@ -15,7 +15,7 @@ import type { DevTool } from './index'
  */
 export function withRNDevToolbox<Props: {}> (
   BaseComponent: ComponentType<Props>
-): ComponentType<$Diff<Props, { reactNativeDevToolbox: DevTool | void }>> {
+): ComponentType<$Diff<Props, { rnDevToolbox: RNDevToolboxInterface | void }>> {
   class ComponentWithRNDevToolbox extends Component<*> {
     render () {
       return (
@@ -24,7 +24,7 @@ export function withRNDevToolbox<Props: {}> (
             return (
               <BaseComponent
                 {...this.props}
-                reactNativeDevToolbox={rnDevToolbox}
+                rnDevToolbox={rnDevToolbox}
               />
             )
           }}

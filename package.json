@@ -37,6 +37,9 @@
     "plugins": [
       "flowtype"
     ],
+    "ignore": [
+      "/flow-typed"
+    ],
     "globals": [
       "__DEV__"
     ]

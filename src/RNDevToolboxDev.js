@@ -1,0 +1,260 @@
+/**
+ *
+ */
+import React from 'react'
+import { isError } from './utils/is-error'
+import { PERSISTENCE_KEY } from './constants'
+import { warn } from './utils/console'
+import { colors } from './style'
+import { RNTipsModal } from './RNTipsModal'
+import { RNDevToolboxBase } from './RNDevToolboxBase'
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { RNDevToolboxContext } from './RNDevToolboxContext'
+
+export class RNDevToolboxDev extends RNDevToolboxBase {
+  constructor (props) {
+    super(props)
+    this.state = {
+      opened: false,
+      useDev: __DEV__,
+      debug: 'Ready!',
+      tipsModalVisible: false,
+      actions: [
+        {
+          name: 'Tips',
+          task: this._toggleTipsModalVisible
+        }
+      ].concat(props.actions || []),
+      indicators: {
+        '__DEV__': __DEV__ ? 'true' : 'false',
+        'NODE_ENV': process.env.NODE_ENV
+      }
+    }
+  }
+
+  componentDidMount () {
+    super.componentDidMount()
+    this._restore()
+  }
+
+  componentDidUpdate (prevProps, prevState) {
+    this._persist(prevState)
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  debug = (debug) => {
+    this.setState({
+      debug
+    })
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  open = () => {
+    this.setState({
+      opened: true
+    })
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  close = () => {
+    this.setState({
+      opened: false
+    })
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  toggle = () => this.state.opened ? this.close() : this.open()
+
+  /**
+   * {@inheritDoc}
+   */
+  registerAction = (action) => {
+    this.setState(state => ({
+      actions: state.actions.concat(Array.isArray(action) ? action : [action])
+    }))
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  processAction = (name) => {
+    const actionOver = () => this.debug(`Action ${name} done!`)
+    this.state.actions.forEach(action => {
+      if (action.name === name) {
+        this.debug(`Process action ${name}`)
+        const done = action.task()
+        // nothing
+        if (done === undefined) {
+          return actionOver()
+        }
+        // promise
+        if (typeof done.then === 'function') {
+          return done.then(actionOver)
+        }
+
+        // we don't know
+        return actionOver()
+      }
+    })
+  }
+
+  _persist = (prevState) => {
+    // should we persist ?
+    if (this.state.opened !== prevState.opened) {
+      if (this.props.persistenceProvider) {
+        this.props.persistenceProvider
+          .setItem(PERSISTENCE_KEY, JSON.stringify({
+            opened: this.state.opened
+          }))
+          .catch(warn)
+      }
+    }
+  }
+
+  _restore = () => {
+    if (this.props.persistenceProvider) {
+      this.props.persistenceProvider
+        .getItem(PERSISTENCE_KEY)
+        .then(data => {
+          if (data) {
+            this.setState(JSON.parse(data))
+          }
+        })
+        .catch(warn)
+    }
+  }
+
+  _toggleTipsModalVisible = () => {
+    this.setState(state => ({tipsModalVisible: !state.tipsModalVisible}))
+  }
+
+  _formatIndicator = (indicators, key) => {
+    const value = indicators[key]
+    return (
+      <Text>
+        <Text>{key}: </Text>
+        <Text
+          style={{color: Array.isArray(value) ? value[1] : undefined}}
+        >
+          {Array.isArray(value) ? value[0] : value}
+        </Text>
+      </Text>
+    )
+  }
+
+  render () {
+    const indicators = {...this.state.indicators, ...(this.props.indicators || {})}
+
+    const Debug = (
+      <Text style={{color: isError(this.state.debug) ? colors.colorError : colors.colorValid}}>
+        {isError(this.state.debug) ? this.state.debug.toString() : this.state.debug}
+      </Text>
+    )
+
+    const Toolbox = (
+      <View style={styles.toolboxContainer}>
+        {Debug}
+        <View style={styles.indicatorsContainer}>
+          {Object.keys(indicators).map((key, i) => (
+            <View key={i} style={styles.indicatorContainer}>
+              <Text>{this._formatIndicator(indicators, key)}</Text>
+            </View>
+          ))}
+        </View>
+        <View style={styles.actionButtonsContainer}>
+          {this.state.actions.map((action, i) => (
+            <TouchableOpacity
+              key={i}
+              style={styles.actionButton}
+              onPress={() => this.processAction(action.name)}
+            >
+              <Text style={styles.actionButtonText}>{action.label || action.name}</Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+      </View>
+    )
+
+    const Button = (
+      <TouchableOpacity style={styles.triggerButton} onPress={this.toggle} underlayColor='#ff7043'>
+        <Text style={{color: 'white'}}>{this.state.opened ? '-' : '+'}</Text>
+      </TouchableOpacity>
+    )
+
+    return (
+      <RNDevToolboxContext.Provider value={this}>
+        <View style={styles.masterContainer}>
+          <RNTipsModal visible={this.state.tipsModalVisible} onRequestClose={this._toggleTipsModalVisible} />
+          <View style={styles.container}>
+            {this.state.opened && Toolbox}
+            {this.props.children}
+            {Button}
+          </View>
+        </View>
+      </RNDevToolboxContext.Provider>
+    )
+  }
+}
+
+const styles = StyleSheet.create({
+  masterContainer: {
+    // not sure if I should use flexGrow or flex
+    flexGrow: 1
+  },
+  container: {
+    flex: 1
+  },
+  triggerButton: {
+    backgroundColor: colors.bgDark,
+    height: 20,
+    width: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+    top: 5,
+    right: 5
+  },
+  toolboxContainer: {
+    backgroundColor: colors.bgLight,
+    borderBottomColor: '#828282d6',
+    borderBottomWidth: 1,
+    padding: 5
+  },
+  row: {
+    flexDirection: 'row',
+    flexWrap: 'wrap'
+  },
+  indicatorsContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    margin: -1,
+    marginBottom: 2
+  },
+  indicatorContainer: {
+    backgroundColor: '#dcdcdcd6',
+    padding: 2,
+    margin: 1
+  },
+  actionButtonsContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    margin: -1
+  },
+  actionButton: {
+    backgroundColor: colors.bgDark,
+    paddingLeft: 2,
+    paddingRight: 2,
+    margin: 1
+  },
+  actionButtonText: {
+    color: 'white'
+  }
+})
