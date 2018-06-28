@@ -10,20 +10,22 @@
     "type": "git",
     "url": "https://github.com/mbret/rn-dev-toolbox"
   },
-  "dependencies": {},
+  "dependencies": {
+    "hoist-non-react-statics": "^2.5.5"
+  },
   "peerDependencies": {
     "react": "^16.4.0",
     "react-native": "^0.56"
   },
   "devDependencies": {
-    "babel-eslint": "^8.2.3",
+    "babel-eslint": "^8.2.5",
     "babel-preset-react-native": "^4.0.0",
-    "eslint": "^4.19.1",
+    "eslint": "^5.0.1",
     "eslint-plugin-flowtype": "^2.49.3",
-    "flow-bin": "0.74.0",
-    "jest": "^23.1.0",
+    "flow-bin": "0.75.0",
+    "jest": "^23.2.0",
     "react": "16.4.1",
-    "react-native": "0.56.0-rc.2",
+    "react-native": "^0.56.0-rc.4",
     "standard": "^11.0.1"
   },
   "main": "src/index.js",
