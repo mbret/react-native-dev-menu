@@ -1,6 +1,6 @@
 {
   "name": "rn-dev-toolbox",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "scripts": {
     "test": "jest --config test/jest.config.js",
     "flow": "flow",
