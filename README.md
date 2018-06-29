@@ -1,6 +1,7 @@
 # rn-dev-toolbox
 
 [![Build Status](https://travis-ci.org/mbret/rn-dev-toolbox.svg?branch=master)](https://travis-ci.org/mbret/rn-dev-toolbox)
+[![Coverage Status](https://coveralls.io/repos/github/mbret/rn-dev-toolbox/badge.svg?branch=master)](https://coveralls.io/github/mbret/rn-dev-toolbox?branch=master)
 [![npm downloads](https://img.shields.io/npm/dt/rn-dev-toolbox.svg)](https://www.npmjs.com/package/rn-dev-toolbox)
 
 ## API
