@@ -6,7 +6,9 @@
 
 **DISCLAIMER:** The documentation is still being written and is coming soon!
 
-![Output sample](https://github.com/mbret/rn-dev-toolbox/blob/master/resources/demo.gif)
+<p align="center">
+  <img src="https://github.com/mbret/rn-dev-toolbox/blob/master/resources/demo.gif">
+</p>
 
 ## API
 
