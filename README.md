@@ -5,6 +5,9 @@
 [![npm downloads](https://img.shields.io/npm/dt/rn-dev-toolbox.svg)](https://www.npmjs.com/package/rn-dev-toolbox)
 
 **DISCLAIMER:** The documentation is still being written and is coming soon!
+
+![Output sample](https://github.com/mbret/rn-dev-toolbox/blob/master/resources/demo.gif)
+
 ## API
 
 ### .open() / .close() / .toggle()
