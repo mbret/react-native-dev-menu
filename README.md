@@ -4,6 +4,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/mbret/rn-dev-toolbox/badge.svg?branch=master)](https://coveralls.io/github/mbret/rn-dev-toolbox?branch=master)
 [![npm downloads](https://img.shields.io/npm/dt/rn-dev-toolbox.svg)](https://www.npmjs.com/package/rn-dev-toolbox)
 
+**DISCLAIMER:** The documentation is still being written and is coming soon!
 ## API
 
 ### .open() / .close() / .toggle()
