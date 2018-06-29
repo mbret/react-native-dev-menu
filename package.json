@@ -2,7 +2,7 @@
   "name": "rn-dev-toolbox",
   "version": "0.1.0",
   "scripts": {
-    "test": "jest",
+    "test": "jest --config test/jest.config.js",
     "flow": "flow",
     "standard": "standard"
   },
@@ -18,8 +18,13 @@
     "react-native": "^0.56"
   },
   "devDependencies": {
+    "@babel/core": "^7.0.0-beta.51",
+    "@babel/preset-env": "^7.0.0-beta.51",
+    "@babel/preset-flow": "^7.0.0-beta.51",
+    "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^8.2.5",
     "babel-preset-react-native": "^4.0.0",
+    "coveralls": "^3.0.1",
     "eslint": "^5.0.1",
     "eslint-plugin-flowtype": "^2.49.3",
     "flow-bin": "0.75.0",

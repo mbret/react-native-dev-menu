@@ -4,9 +4,6 @@
 import myPackage from '../../package'
 
 let deprecationsSeen = {}
-export const resetDeprecationsSeen = () => {
-  deprecationsSeen = {}
-}
 
 const consoleWarn = (...args) => {
   if (typeof console === 'object' && typeof console.warn === 'function') {

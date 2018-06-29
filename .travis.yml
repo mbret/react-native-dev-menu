@@ -5,6 +5,7 @@ install:
   - npm i -g npm
   - npm ci
 script:
+  - npm run test -- --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
   - npm run standard
   - npm run flow
 deploy:
