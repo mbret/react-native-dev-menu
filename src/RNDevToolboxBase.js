@@ -4,12 +4,7 @@
 import React, { Component } from 'react'
 import { RNDevToolboxContext } from './RNDevToolboxContext'
 import type { Node } from 'react'
-
-type Action = {
-  name: string,
-  task: Function,
-  label?: string
-}
+import type { Action } from './index'
 
 export interface RNDevToolboxInterface {
   debug (debug: any): void;
@@ -23,7 +18,8 @@ export type RNDevToolboxProps = {
   onRef?: (ref: RNDevToolboxInterface) => void,
   children?: Node,
   indicators?: any,
-  enable?: boolean
+  enable?: boolean,
+  actions?: Array<Action>
 }
 
 type State = {

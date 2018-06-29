@@ -15,6 +15,12 @@ export {
 
 export type { RNDevToolboxInterface } from './RNDevToolboxBase'
 
+export type Action = {
+  name: string,
+  task: Function,
+  label?: string
+}
+
 // const B = ({rnDevToolbox}: {
 //   rnDevToolbox: RNDevToolbox
 // }) => {

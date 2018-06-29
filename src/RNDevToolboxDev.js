@@ -11,23 +11,20 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import { RNDevToolboxContext } from './RNDevToolboxContext'
 
 export class RNDevToolboxDev extends RNDevToolboxBase {
-  constructor (props) {
-    super(props)
-    this.state = {
-      opened: false,
-      useDev: __DEV__,
-      debug: 'Ready!',
-      tipsModalVisible: false,
-      actions: [
-        {
-          name: 'Tips',
-          task: this._toggleTipsModalVisible
-        }
-      ].concat(props.actions || []),
-      indicators: {
-        '__DEV__': __DEV__ ? 'true' : 'false',
-        'NODE_ENV': process.env.NODE_ENV
+  state = {
+    opened: false,
+    useDev: __DEV__,
+    debug: 'Ready',
+    tipsModalVisible: false,
+    actions: [
+      {
+        name: 'Tips',
+        task: this._toggleTipsModalVisible
       }
+    ].concat(this.props.actions || []),
+    indicators: {
+      '__DEV__': __DEV__ ? 'true' : 'false',
+      'NODE_ENV': process.env.NODE_ENV
     }
   }
 
