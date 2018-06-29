@@ -3,9 +3,8 @@
  */
 import React from 'react'
 import { isError } from './utils/is-error'
-import { PERSISTENCE_KEY } from './constants'
+import { PERSISTENCE_KEY, style } from './constants'
 import { warn } from './utils/console'
-import { colors } from './style'
 import { RNTipsModal } from './RNTipsModal'
 import { RNDevToolboxBase } from './RNDevToolboxBase'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
@@ -154,7 +153,7 @@ export class RNDevToolboxDev extends RNDevToolboxBase {
     const indicators = {...this.state.indicators, ...(this.props.indicators || {})}
 
     const Debug = (
-      <Text style={{color: isError(this.state.debug) ? colors.colorError : colors.colorValid}}>
+      <Text style={{color: isError(this.state.debug) ? style.colors.colorError : style.colors.colorValid}}>
         {isError(this.state.debug) ? this.state.debug.toString() : this.state.debug}
       </Text>
     )
@@ -213,7 +212,7 @@ const styles = StyleSheet.create({
     flex: 1
   },
   triggerButton: {
-    backgroundColor: colors.bgDark,
+    backgroundColor: style.colors.bgDark,
     height: 20,
     width: 20,
     alignItems: 'center',
@@ -223,7 +222,7 @@ const styles = StyleSheet.create({
     right: 5
   },
   toolboxContainer: {
-    backgroundColor: colors.bgLight,
+    backgroundColor: style.colors.bgLight,
     borderBottomColor: '#828282d6',
     borderBottomWidth: 1,
     padding: 5
@@ -249,7 +248,7 @@ const styles = StyleSheet.create({
     margin: -1
   },
   actionButton: {
-    backgroundColor: colors.bgDark,
+    backgroundColor: style.colors.bgDark,
     paddingLeft: 2,
     paddingRight: 2,
     margin: 1

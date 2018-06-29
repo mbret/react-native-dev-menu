@@ -1,7 +1,7 @@
 /**
  * @flow
  */
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import {
   // StyleSheet,
   View,
@@ -15,7 +15,7 @@ type Props = {
   onRequestClose: Function
 };
 
-export class RNTipsModal extends Component<Props> {
+export class RNTipsModal extends PureComponent<Props> {
   render () {
     return (
       <Modal
