@@ -83,7 +83,7 @@ onRef | `(ref: RNDevToolboxInterface) => void` | No | - | Retrieve the component
 indicators | [`Array<Indicator>`](https://github.com/mbret/rn-dev-toolbox/blob/master/src/types.js) | No | [] | Declare a list of indicators
 enable | `boolean` | No | false | Force the devtool (useful if you want to have it on production)
 actions | [`Array<Action>`](https://github.com/mbret/rn-dev-toolbox/blob/master/src/types.js) | No | [] | Declare a list of actions
-persistenceProvider | | No | memory | Use another provider to persist the devtool state
+persistenceProvider | [`PersistenceProvider`](https://github.com/mbret/rn-dev-toolbox/blob/master/src/types.js) | No | memory | Use another provider to persist the devtool state
 
 ## (API) Accessing your devtool instance
 In order to access the api of the toolbox you need to use `onRef` props. Once you have the instance you have the ability
@@ -156,13 +156,14 @@ export withRNDevToolbox(Footer)
 
 ## API
 
-### .open() / .close() / .toggle()
-Open, close or toggle the toolbox
-````javascript
-this.rnToolbox.open()
-this.rnToolbox.close()
-this.rnToolbox.toggle()
-````
+`**open() / close() / toggle()**`
+
+Open, close or toggle the toolbox visibility
+
+`**debug(info: any)**`
+
+Print any information to the toolbox
+
 
 ### .registerAction(action: object|array) -> void
 Register an action or an array of action.
