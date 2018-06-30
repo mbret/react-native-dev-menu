@@ -80,9 +80,9 @@ We also added an action to clear the storage of your app. This is just an exampl
 Property | Type | Required | Default | Description
 --- | --- | --- | --- | ---
 onRef | `(ref: RNDevToolboxInterface) => void` | No | - | Retrieve the component instance
-indicators | `Array<Indicator>` | No | [] | Declare a list of indicators
+indicators | [`Array<Indicator>`](https://github.com/mbret/rn-dev-toolbox/blob/master/src/types.js) | No | [] | Declare a list of indicators
 enable | `boolean` | No | false | Force the devtool (useful if you want to have it on production)
-actions | `Array<Action>` | No | [] | Declare a list of actions
+actions | [`Array<Action>`](https://github.com/mbret/rn-dev-toolbox/blob/master/src/types.js) | No | [] | Declare a list of actions
 persistenceProvider | | No | memory | Use another provider to persist the devtool state
 
 ## (API) Accessing your devtool instance
