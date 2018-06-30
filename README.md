@@ -155,30 +155,22 @@ export withRNDevToolbox(Footer)
 ````
 **You can't use the hoc on your root component as the context is not initialized yet**
 
-**`open() / close() / toggle()`**
+### API Documentation
+
+#### `open() / close() / toggle()`
 
 Open, close or toggle the toolbox visibility
 
-**`debug(info: any)`**
+#### `debug(info: any)`
 
 Print any information to the toolbox
 
 
-### .registerAction(action: object|array) -> void
+### `registerAction(action: Action | Array<Action>): void`
 Register an action or an array of action.
-````javascript
-this.rnToolbox.registerAction({
-    name: 'clearStorage',
-    label: 'Clear storage', // optional
-    task: () => AsyncStorage.clear()
-})
-````
 
-### .processAction(name: string) -> void
+### `processAction(name: string): void`
 Execute one of your actions
-````javascript
-this.rnToolbox.processAction('clearStorage')
-````
 
 
 
