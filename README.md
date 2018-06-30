@@ -10,6 +10,131 @@
   <img src="https://github.com/mbret/rn-dev-toolbox/raw/master/docs/demo.gif">
 </p>
 
+
+## Installation
+**This package does not have bundle yet, it only provides source code which means that you need to support `flow` and es6 modules.**
+```
+npm install rn-dev-toolbar
+```
+Don't install this module as devDependendies as it will always be present in your code. Don't worry it support production mode.
+
+
+## Getting started
+### Basic setup
+Most of the time you will want to wrap your entire app inside RNDevToolbox so the
+toolbox will appears on the top. You may as well use the component anywhere you want
+and wrap only some portions of your code, it's up to you.
+
+`app/Root.js`
+````javascript
+import React, { Component } from 'react'
+import { Text } from 'react-native'
+import { RNDevToolbox } from 'rn-dev-toolbox'
+
+class Root extends Component<{}, {}> {
+  render () {
+    <RNDevToolbox>
+      <Text>My Awesome app</Text>
+    </RNDevToolbox>
+  }
+}
+````
+The component does not have any required props but you probably want to display some info relative to
+your app or create some task for your team. Here is an example with some indicators and actions:
+
+`app/Root.js`
+````javascript
+import React, { Component } from 'react'
+import { Text, AsyncStorage } from 'react-native'
+import { RNDevToolbox } from 'rn-dev-toolbox'
+
+class Root extends Component<{
+  username: ?string
+}, {}> {
+  render () {
+    <RNDevToolbox
+      indicators={[
+        'Hey hi!',
+        ['Auth status:', username, username ? 'green' : 'red']
+      ]}
+      actions={[
+        {
+          name: 'Clear storage',
+          job: () => AsyncStorage.clear()
+        },
+      ]}
+    >
+      <Text>My Awesome app</Text>
+    </RNDevToolbox>
+  }
+}
+````
+This example print a simple indicator to say 'hi' and your app auth status. You can create dynamic status to track anything you want.
+We also added an action to clear the storage of your app. This is just an example you can create any task you want.
+
+## (API) Accessing your devtool instance
+In order to access the api of the toolbox you need to use `onRef` props. Once you have the instance you have the ability
+to register indicators and actions dynamically, toggle the visibility, trigger actions, ...
+
+`app/Root.js`
+````javascript
+import React, { Component } from 'react'
+import { Text, AsyncStorage } from 'react-native'
+import { RNDevToolbox } from 'rn-dev-toolbox'
+import type { RNDevToolboxInterface } from 'rn-dev-toolbox'
+
+class Root extends Component<{}, {
+  rnDevToolbox: RNDevToolboxInterface
+}> {
+  rnDevToolbox = null
+
+  componentDidMount () {
+    this.rnDevToolbox.processAction('clearStorage')
+  }
+
+  render () {
+    <RNDevToolbox
+      onRef={ref => {this.rnDevToolbox = ref}}
+      actions={[
+        {
+          label: 'Clear storage',
+          name: 'clearStorage',
+          job: () => AsyncStorage.clear()
+        },
+      ]}
+    >
+      <Text>My Awesome app</Text>
+    </RNDevToolbox>
+  }
+}
+````
+Here we retrieve the instance and manually trigger an action. We use a name in camelCase for more
+conveniance and a label to still have a nice name on screen.
+
+This process to retrieve the instance is only needed for your root component. If you want to
+access the instance somewhere else you can use the Higher-Order Components `with-rn-dev-toolbox`.
+
+`app/Footer.js`
+````javascript
+import React, { Component } from 'react'
+import { Text } from 'react-native'
+import { withRNDevToolbox } from 'rn-dev-toolbox'
+import type { RNDevToolboxInterface } from 'rn-dev-toolbox'
+
+class Footer extends Component<{
+  rnDevToolbox: RNDevToolboxInterface
+}, {}> {
+  componentDidMount () {
+    this.rnDevToolbox.processAction('clearStorage')
+  }
+
+  render = () => <Text>I'm a footer</Text>
+}
+
+export withRNDevToolbox(Footer)
+````
+**You can't use the hoc on your root component as the context is not initialized yet**
+
 ## API
 
 ### .open() / .close() / .toggle()
