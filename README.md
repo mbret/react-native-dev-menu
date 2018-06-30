@@ -12,17 +12,17 @@
 
 
 ## Installation
-**This package does not have bundle yet, it only provides source code which means that you need to support `flow` and es6 modules.**
+**This package does not have a bundle yet, it only provides source code which means that you need to support `flow` and es6 modules.**
 ```
 npm install rn-dev-toolbar
 ```
-Don't install this module as devDependendies as it will always be present in your code. Don't worry it support production mode.
+You can't install this module as a devDependendies as it's present in your code.
 
 
 ## Getting started
 ### Basic setup
 Most of the time you will want to wrap your entire app inside RNDevToolbox so the
-toolbox will appears on the top. You may as well use the component anywhere you want
+toolbox will appears on the top of the screen (check the gif). You may as well use the component anywhere you want
 and wrap only some portions of your code, it's up to you.
 
 `app/Root.js`
