@@ -3,12 +3,15 @@
  */
 import { Component } from 'react'
 import type { Node } from 'react'
-import type { Action, Indicator } from './index'
+import type { Action, Indicator } from './types'
 
 export interface RNDevToolboxInterface {
   debug (debug: any): void;
   processAction (name: string): void;
   registerAction (action: Action): void;
+  open (): void;
+  close (): void;
+  toggle (): void;
 }
 
 export type RNDevToolboxProps<P> = {
@@ -18,7 +21,7 @@ export type RNDevToolboxProps<P> = {
   },
   onRef?: (ref: RNDevToolboxInterface) => void,
   children?: Node,
-  indicators?: any,
+  indicators?: Array<Indicator>,
   enable?: boolean,
   actions?: Array<Action>
 } & P
@@ -38,7 +41,15 @@ export class RNDevToolboxBase<P, S> extends Component<RNDevToolboxProps<P>, RNDe
     }
   }
 
-  debug = (debug: any) => {}
   processAction = (name: string) => {}
+
   registerAction = (action: Action) => {}
+
+  debug = (debug: any) => this.setState({debug})
+
+  open = () => this.setState({opened: true})
+
+  close = () => this.setState({opened: false})
+
+  toggle = () => this.state.opened ? this.close() : this.open()
 }

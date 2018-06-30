@@ -14,12 +14,11 @@ export class RNDevToolboxProd extends RNDevToolboxBase<{}, {}> {
     return false
   }
 
-  open = () => {}
-
-  close = () => {}
-
-  toggle = () => {}
-
+  /**
+   * We only render children inside context
+   * to no broke the global api
+   * @returns {function}
+   */
   render () {
     return (
       <RNDevToolboxContext.Provider value={this}>

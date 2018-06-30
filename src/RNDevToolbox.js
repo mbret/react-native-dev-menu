@@ -7,7 +7,7 @@ import { RNDevToolboxDev } from './RNDevToolboxDev'
 import { RNDevToolboxProd } from './RNDevToolboxProd'
 import type { RNDevToolboxProps } from './RNDevToolboxBase'
 
-export class RNDevToolbox extends PureComponent<RNDevToolboxProps<{}>, {}> {
+export class RNDevToolbox extends PureComponent<RNDevToolboxProps<{}>> {
   static VALID = style.colors.colorValid
   static DANGER = style.colors.colorError
 

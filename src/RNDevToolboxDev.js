@@ -11,7 +11,7 @@ import type { RNDevToolboxState, RNDevToolboxProps } from './RNDevToolboxBase'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import { RNDevToolboxContext } from './RNDevToolboxContext'
 import memoizeOne from 'memoize-one'
-import type { Action, Indicator } from './index'
+import type { Action, Indicator } from './types'
 
 const emptyIndicators = []
 const emptyActions = []
@@ -30,7 +30,7 @@ export class RNDevToolboxDev extends RNDevToolboxBase<LocalState, localState> {
     actions: [],
     indicators: [
       ['__DEV__', __DEV__ ? 'true' : 'false'],
-      ['NODE_ENV', process.env.NODE_ENV]
+      ['NODE_ENV', process.env.NODE_ENV || '']
     ],
     defaultActions: [{
       name: 'Tips',
@@ -40,8 +40,9 @@ export class RNDevToolboxDev extends RNDevToolboxBase<LocalState, localState> {
 
   static getDerivedStateFromProps (nextProps: Props, nextState: State) {
     // compute actions based on props actions
-    const actions = RNDevToolboxDev.computeActions(nextState.defaultActions, nextState.defaultActions)
-    if (actions !== nextState.actions) return null
+    const actions = RNDevToolboxDev.computeActions(nextProps.actions, nextState.defaultActions)
+
+    if (actions === nextState.actions) return null
 
     // update actions
     return {actions}
@@ -62,39 +63,7 @@ export class RNDevToolboxDev extends RNDevToolboxBase<LocalState, localState> {
   /**
    * {@inheritDoc}
    */
-  debug = (debug: any) => {
-    this.setState({
-      debug
-    })
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  open = () => {
-    this.setState({
-      opened: true
-    })
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  close = () => {
-    this.setState({
-      opened: false
-    })
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  toggle = () => this.state.opened ? this.close() : this.open()
-
-  /**
-   * {@inheritDoc}
-   */
-  registerAction = (action: Action) => {
+  registerAction = (action: Action): void => {
     this.setState(state => ({
       actions: state.actions.concat(Array.isArray(action) ? action : [action])
     }))
@@ -103,7 +72,7 @@ export class RNDevToolboxDev extends RNDevToolboxBase<LocalState, localState> {
   /**
    * {@inheritDoc}
    */
-  processAction = (name: string) => {
+  processAction = (name: string): void => {
     const actionOver = () => this.debug(`Action ${name} done!`)
     this.state.actions.forEach(action => {
       if (action.name === name) {
@@ -157,7 +126,7 @@ export class RNDevToolboxDev extends RNDevToolboxBase<LocalState, localState> {
   _formatIndicator = (indicator: Indicator) => {
     const [key, value, color] = Array.isArray(indicator) ? indicator : [indicator]
 
-    return Array.isArray(indicator)
+    return !Array.isArray(indicator)
       ? (
         <Text>{key}</Text>
       )
