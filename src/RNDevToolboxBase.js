@@ -3,22 +3,24 @@
  */
 import { Component } from 'react'
 import type { Node } from 'react'
-import type { Action, Indicator } from './types'
+import type { Action, Indicator, PersistenceProvider } from './types'
 
 export interface RNDevToolboxInterface {
   debug (debug: any): void;
+
   processAction (name: string): void;
+
   registerAction (action: Action): void;
+
   open (): void;
+
   close (): void;
+
   toggle (): void;
 }
 
 export type RNDevToolboxProps<P> = {
-  persistenceProvider?: {
-    getItem: Function,
-    setItem: Function
-  },
+  persistenceProvider?: PersistenceProvider,
   onRef?: (ref: RNDevToolboxInterface) => void,
   children?: Node,
   indicators?: Array<Indicator>,
