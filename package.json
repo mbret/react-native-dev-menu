@@ -1,6 +1,6 @@
 {
   "name": "rn-dev-toolbox",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "scripts": {
     "test": "jest",
     "flow": "flow",
