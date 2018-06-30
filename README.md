@@ -3,8 +3,9 @@
 [![Build Status](https://travis-ci.org/mbret/rn-dev-toolbox.svg?branch=master)](https://travis-ci.org/mbret/rn-dev-toolbox)
 [![Coverage Status](https://coveralls.io/repos/github/mbret/rn-dev-toolbox/badge.svg?branch=master)](https://coveralls.io/github/mbret/rn-dev-toolbox?branch=master)
 [![npm downloads](https://img.shields.io/npm/dt/rn-dev-toolbox.svg)](https://www.npmjs.com/package/rn-dev-toolbox)
+[![npm version](https://img.shields.io/npm/v/rn-dev-toolbox.svg)](https://www.npmjs.com/package/rn-dev-toolbox) 
 
-**DISCLAIMER:** The documentation is still being written and is coming soon!
+
 
 <p align="center">
   <img src="https://github.com/mbret/rn-dev-toolbox/raw/master/docs/demo.gif">
@@ -83,7 +84,7 @@ onRef | `(ref: RNDevToolboxInterface) => void` | No | - | Retrieve the component
 indicators | [`Array<Indicator>`](https://github.com/mbret/rn-dev-toolbox/blob/master/src/types.js) | No | [] | Declare a list of indicators
 enable | `boolean` | No | false | Force the devtool (useful if you want to have it on production)
 actions | [`Array<Action>`](https://github.com/mbret/rn-dev-toolbox/blob/master/src/types.js) | No | [] | Declare a list of actions
-persistenceProvider | [`PersistenceProvider`](https://github.com/mbret/rn-dev-toolbox/blob/master/src/types.js) | No | memory | Use another provider to persist the devtool state
+persistenceProvider | [`PersistenceProvider`](https://github.com/mbret/rn-dev-toolbox/blob/master/src/types.js) | No | memory | Use another provider to persist the devtool state. The default memory will not save the visibily when you reload your app for example. You can use [`AsyncStorage`](https://facebook.github.io/react-native/docs/asyncstorage.html) for more conveniance.
 
 ## API
 ### Accessing your devtool instance
@@ -172,5 +173,12 @@ Register an action or an array of action.
 #### `processAction(name: string): void`
 Execute one of your actions
 
+## Contribution
+You are welcome to contribute to this package. Feel free to open issue or feature request. 
 
+## Licence
+MIT
 
+---
+
+This package is currently used at [Versusmind](https://www.versusmind.eu/).
