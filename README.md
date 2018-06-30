@@ -86,6 +86,12 @@ enable | `boolean` | No | false | Force the devtool (useful if you want to have 
 actions | [`Array<Action>`](https://github.com/mbret/rn-dev-toolbox/blob/master/src/types.js) | No | [] | Declare a list of actions
 persistenceProvider | [`PersistenceProvider`](https://github.com/mbret/rn-dev-toolbox/blob/master/src/types.js) | No | memory | Use another provider to persist the devtool state. The default memory will not save the visibily when you reload your app for example. You can use [`AsyncStorage`](https://facebook.github.io/react-native/docs/asyncstorage.html) for more conveniance.
 
+### Note about production
+When using production environment the component will switch to production state as well. There will be nothing displayed and
+the component will not process anything. Therefore there are no performance impact. You can check the production implementation 
+here [RNDevToolboxProd.js](https://github.com/mbret/rn-dev-toolbox/blob/master/src/RNDevToolboxProd.js). `RNDevToolboxProd` implement all the method from the RNDevToolboxInterface but will do nothing so your code does not break and you don't have to check for 
+production env by yourself.
+
 ## API
 ### Accessing your devtool instance
 In order to access the api of the toolbox you need to use `onRef` props. Once you have the instance you have the ability
