@@ -85,7 +85,8 @@ enable | `boolean` | No | false | Force the devtool (useful if you want to have 
 actions | [`Array<Action>`](https://github.com/mbret/rn-dev-toolbox/blob/master/src/types.js) | No | [] | Declare a list of actions
 persistenceProvider | [`PersistenceProvider`](https://github.com/mbret/rn-dev-toolbox/blob/master/src/types.js) | No | memory | Use another provider to persist the devtool state
 
-## (API) Accessing your devtool instance
+## API
+### Accessing your devtool instance
 In order to access the api of the toolbox you need to use `onRef` props. Once you have the instance you have the ability
 to register indicators and actions dynamically, toggle the visibility, trigger actions, ...
 
@@ -154,13 +155,11 @@ export withRNDevToolbox(Footer)
 ````
 **You can't use the hoc on your root component as the context is not initialized yet**
 
-## API
-
-`**open() / close() / toggle()**`
+**`open() / close() / toggle()`**
 
 Open, close or toggle the toolbox visibility
 
-`**debug(info: any)**`
+**`debug(info: any)`**
 
 Print any information to the toolbox
 
