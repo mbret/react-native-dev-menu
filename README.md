@@ -33,9 +33,11 @@ import { RNDevToolbox } from 'rn-dev-toolbox'
 
 class Root extends Component<{}, {}> {
   render () {
-    <RNDevToolbox>
-      <Text>My Awesome app</Text>
-    </RNDevToolbox>
+    return (
+      <RNDevToolbox>
+        <Text>My Awesome app</Text>
+      </RNDevToolbox>
+    )
   }
 }
 ````
@@ -52,25 +54,36 @@ class Root extends Component<{
   username: ?string
 }, {}> {
   render () {
-    <RNDevToolbox
-      indicators={[
-        'Hey hi!',
-        ['Auth status:', username, username ? 'green' : 'red']
-      ]}
-      actions={[
-        {
-          name: 'Clear storage',
-          job: () => AsyncStorage.clear()
-        },
-      ]}
-    >
-      <Text>My Awesome app</Text>
-    </RNDevToolbox>
+    return (
+      <RNDevToolbox
+        indicators={[
+          'Hey hi!',
+          ['Auth status:', username, username ? 'green' : 'red']
+        ]}
+        actions={[
+          {
+            name: 'Clear storage',
+            job: () => AsyncStorage.clear()
+          },
+        ]}
+      >
+        <Text>My Awesome app</Text>
+      </RNDevToolbox>
+    )
   }
 }
 ````
 This example print a simple indicator to say 'hi' and your app auth status. You can create dynamic status to track anything you want.
 We also added an action to clear the storage of your app. This is just an example you can create any task you want.
+
+### Props
+Property | Type | Required | Default | Description
+--- | --- | --- | --- | ---
+onRef | `(ref: RNDevToolboxInterface) => void` | No | - | Retrieve the component instance
+indicators | `Array<Indicator>` | No | [] | Declare a list of indicators
+enable | `boolean` | No | false | Force the devtool (useful if you want to have it on production)
+actions | `Array<Action>` | No | [] | Declare a list of actions
+persistenceProvider | | No | memory | Use another provider to persist the devtool state
 
 ## (API) Accessing your devtool instance
 In order to access the api of the toolbox you need to use `onRef` props. Once you have the instance you have the ability
@@ -93,18 +106,20 @@ class Root extends Component<{}, {
   }
 
   render () {
-    <RNDevToolbox
-      onRef={ref => {this.rnDevToolbox = ref}}
-      actions={[
-        {
-          label: 'Clear storage',
-          name: 'clearStorage',
-          job: () => AsyncStorage.clear()
-        },
-      ]}
-    >
-      <Text>My Awesome app</Text>
-    </RNDevToolbox>
+    return (
+      <RNDevToolbox
+        onRef={ref => {this.rnDevToolbox = ref}}
+        actions={[
+          {
+            label: 'Clear storage',
+            name: 'clearStorage',
+            job: () => AsyncStorage.clear()
+          },
+        ]}
+      >
+        <Text>My Awesome app</Text>
+      </RNDevToolbox>
+    )
   }
 }
 ````
@@ -128,7 +143,11 @@ class Footer extends Component<{
     this.rnDevToolbox.processAction('clearStorage')
   }
 
-  render = () => <Text>I'm a footer</Text>
+  render() {
+    return (
+      <Text>I am a footer</Text>
+    )
+  }
 }
 
 export withRNDevToolbox(Footer)
