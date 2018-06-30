@@ -33,9 +33,11 @@ import { RNDevToolbox } from 'rn-dev-toolbox'
 
 class Root extends Component<{}, {}> {
   render () {
-    <RNDevToolbox>
-      <Text>My Awesome app</Text>
-    </RNDevToolbox>
+    return (
+      <RNDevToolbox>
+        <Text>My Awesome app</Text>
+      </RNDevToolbox>
+    )
   }
 }
 ````
@@ -52,20 +54,22 @@ class Root extends Component<{
   username: ?string
 }, {}> {
   render () {
-    <RNDevToolbox
-      indicators={[
-        'Hey hi!',
-        ['Auth status:', username, username ? 'green' : 'red']
-      ]}
-      actions={[
-        {
-          name: 'Clear storage',
-          job: () => AsyncStorage.clear()
-        },
-      ]}
-    >
-      <Text>My Awesome app</Text>
-    </RNDevToolbox>
+    return (
+      <RNDevToolbox
+        indicators={[
+          'Hey hi!',
+          ['Auth status:', username, username ? 'green' : 'red']
+        ]}
+        actions={[
+          {
+            name: 'Clear storage',
+            job: () => AsyncStorage.clear()
+          },
+        ]}
+      >
+        <Text>My Awesome app</Text>
+      </RNDevToolbox>
+    )
   }
 }
 ````
@@ -93,18 +97,20 @@ class Root extends Component<{}, {
   }
 
   render () {
-    <RNDevToolbox
-      onRef={ref => {this.rnDevToolbox = ref}}
-      actions={[
-        {
-          label: 'Clear storage',
-          name: 'clearStorage',
-          job: () => AsyncStorage.clear()
-        },
-      ]}
-    >
-      <Text>My Awesome app</Text>
-    </RNDevToolbox>
+    return (
+      <RNDevToolbox
+        onRef={ref => {this.rnDevToolbox = ref}}
+        actions={[
+          {
+            label: 'Clear storage',
+            name: 'clearStorage',
+            job: () => AsyncStorage.clear()
+          },
+        ]}
+      >
+        <Text>My Awesome app</Text>
+      </RNDevToolbox>
+    )
   }
 }
 ````
@@ -128,7 +134,11 @@ class Footer extends Component<{
     this.rnDevToolbox.processAction('clearStorage')
   }
 
-  render = () => <Text>I'm a footer</Text>
+  render() {
+    return (
+      <Text>I'm a footer</Text>
+    )
+  }
 }
 
 export withRNDevToolbox(Footer)
