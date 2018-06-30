@@ -5,12 +5,12 @@
 [![npm downloads](https://img.shields.io/npm/dt/rn-dev-toolbox.svg)](https://www.npmjs.com/package/rn-dev-toolbox)
 [![npm version](https://img.shields.io/npm/v/rn-dev-toolbox.svg)](https://www.npmjs.com/package/rn-dev-toolbox) 
 
-
-
 <p align="center">
   <img src="https://github.com/mbret/rn-dev-toolbox/raw/master/docs/demo.gif">
 </p>
 
+Free your code from ugly logs and code during your debug process and give happiness to your tester team. This package
+will let you create automated task and display information to help you during development.
 
 ## Installation
 **This package does not have a bundle yet, it only provides source code which means that you need to support `flow` and es6 modules.**
