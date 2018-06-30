@@ -1,2 +1,5 @@
 .idea
 flow-typed
+.babelrc
+coverage
+docs

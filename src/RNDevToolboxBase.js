@@ -1,16 +1,17 @@
 /**
  * @flow
  */
-import React, { Component } from 'react'
-import { RNDevToolboxContext } from './RNDevToolboxContext'
+import { Component } from 'react'
 import type { Node } from 'react'
-import type { Action } from './index'
+import type { Action, Indicator } from './index'
 
 export interface RNDevToolboxInterface {
   debug (debug: any): void;
+  processAction (name: string): void;
+  registerAction (action: Action): void;
 }
 
-export type RNDevToolboxProps = {
+export type RNDevToolboxProps<P> = {
   persistenceProvider?: {
     getItem: Function,
     setItem: Function
@@ -20,40 +21,24 @@ export type RNDevToolboxProps = {
   indicators?: any,
   enable?: boolean,
   actions?: Array<Action>
-}
+} & P
 
-type State = {
+export type RNDevToolboxState<S> = {
   tipsModalVisible: boolean,
   debug: string,
-  indicators: any,
+  indicators: Array<Indicator>,
   opened: boolean,
-  actions: Array<Action>
-}
+  actions: Array<Action>,
+} & S
 
-export class RNDevToolboxBase extends Component<RNDevToolboxProps, State> implements RNDevToolboxInterface {
+export class RNDevToolboxBase<P, S> extends Component<RNDevToolboxProps<P>, RNDevToolboxState<S>> implements RNDevToolboxInterface {
   componentDidMount () {
     if (this.props.onRef) {
       this.props.onRef(this)
     }
   }
 
-  registerAction = () => {}
-
+  debug = (debug: any) => {}
   processAction = (name: string) => {}
-
-  debug = (debug: string) => {}
-
-  open = () => {}
-
-  close = () => {}
-
-  toggle = () => {}
-
-  render () {
-    return (
-      <RNDevToolboxContext.Provider value={this}>
-        {this.props.children}
-      </RNDevToolboxContext.Provider>
-    )
-  }
+  registerAction = (action: Action) => {}
 }

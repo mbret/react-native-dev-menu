@@ -21,6 +21,8 @@ export type Action = {
   label?: string
 }
 
+export type Indicator = String | Array<mixed>
+
 // const B = ({rnDevToolbox}: {
 //   rnDevToolbox: RNDevToolbox
 // }) => {

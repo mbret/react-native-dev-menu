@@ -1,5 +1,5 @@
 /**
- *
+ * @flow
  */
 import React from 'react'
 import { isError } from './utils/is-error'
@@ -7,40 +7,62 @@ import { PERSISTENCE_KEY, style } from './constants'
 import { warn } from './utils/console'
 import { RNTipsModal } from './RNTipsModal'
 import { RNDevToolboxBase } from './RNDevToolboxBase'
+import type { RNDevToolboxState, RNDevToolboxProps } from './RNDevToolboxBase'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import { RNDevToolboxContext } from './RNDevToolboxContext'
+import memoizeOne from 'memoize-one'
+import type { Action, Indicator } from './index'
 
-export class RNDevToolboxDev extends RNDevToolboxBase {
+const emptyIndicators = []
+const emptyActions = []
+
+type localState = { defaultActions: Array<Action> }
+type State = RNDevToolboxState<localState>
+type LocalState = {}
+type Props = RNDevToolboxProps<LocalState>
+
+export class RNDevToolboxDev extends RNDevToolboxBase<LocalState, localState> {
   state = {
     opened: false,
     useDev: __DEV__,
     debug: 'Ready',
     tipsModalVisible: false,
-    actions: [
-      {
-        name: 'Tips',
-        task: this._toggleTipsModalVisible
-      }
-    ].concat(this.props.actions || []),
-    indicators: {
-      '__DEV__': __DEV__ ? 'true' : 'false',
-      'NODE_ENV': process.env.NODE_ENV
-    }
+    actions: [],
+    indicators: [
+      ['__DEV__', __DEV__ ? 'true' : 'false'],
+      ['NODE_ENV', process.env.NODE_ENV]
+    ],
+    defaultActions: [{
+      name: 'Tips',
+      task: () => this._toggleTipsModalVisible
+    }]
   }
+
+  static getDerivedStateFromProps (nextProps: Props, nextState: State) {
+    // compute actions based on props actions
+    const actions = RNDevToolboxDev.computeActions(nextState.defaultActions, nextState.defaultActions)
+    if (actions !== nextState.actions) return null
+
+    // update actions
+    return {actions}
+  }
+
+  computeIndicators = memoizeOne((indicators?: Array<Indicator> = emptyIndicators) => [...this.state.indicators, ...indicators])
+  static computeActions = memoizeOne((actions?: Array<Action> = emptyActions, defaultActions: Array<Action>) => [...defaultActions, ...actions])
 
   componentDidMount () {
     super.componentDidMount()
     this._restore()
   }
 
-  componentDidUpdate (prevProps, prevState) {
+  componentDidUpdate (prevProps: Props, prevState: State) {
     this._persist(prevState)
   }
 
   /**
    * {@inheritDoc}
    */
-  debug = (debug) => {
+  debug = (debug: any) => {
     this.setState({
       debug
     })
@@ -72,7 +94,7 @@ export class RNDevToolboxDev extends RNDevToolboxBase {
   /**
    * {@inheritDoc}
    */
-  registerAction = (action) => {
+  registerAction = (action: Action) => {
     this.setState(state => ({
       actions: state.actions.concat(Array.isArray(action) ? action : [action])
     }))
@@ -81,7 +103,7 @@ export class RNDevToolboxDev extends RNDevToolboxBase {
   /**
    * {@inheritDoc}
    */
-  processAction = (name) => {
+  processAction = (name: string) => {
     const actionOver = () => this.debug(`Action ${name} done!`)
     this.state.actions.forEach(action => {
       if (action.name === name) {
@@ -102,7 +124,7 @@ export class RNDevToolboxDev extends RNDevToolboxBase {
     })
   }
 
-  _persist = (prevState) => {
+  _persist = (prevState: State) => {
     // should we persist ?
     if (this.state.opened !== prevState.opened) {
       if (this.props.persistenceProvider) {
@@ -132,22 +154,25 @@ export class RNDevToolboxDev extends RNDevToolboxBase {
     this.setState(state => ({tipsModalVisible: !state.tipsModalVisible}))
   }
 
-  _formatIndicator = (indicators, key) => {
-    const value = indicators[key]
-    return (
-      <Text>
-        <Text>{key}: </Text>
-        <Text
-          style={{color: Array.isArray(value) ? value[1] : undefined}}
-        >
-          {Array.isArray(value) ? value[0] : value}
+  _formatIndicator = (indicator: Indicator) => {
+    const [key, value, color] = Array.isArray(indicator) ? indicator : [indicator]
+
+    return Array.isArray(indicator)
+      ? (
+        <Text>{key}</Text>
+      )
+      : (
+        <Text>
+          <Text>{key}: </Text>
+          <Text style={{color}}>
+            {value}
+          </Text>
         </Text>
-      </Text>
-    )
+      )
   }
 
   render () {
-    const indicators = {...this.state.indicators, ...(this.props.indicators || {})}
+    const indicators = this.computeIndicators(this.props.indicators)
 
     const Debug = (
       <Text style={{color: isError(this.state.debug) ? style.colors.colorError : style.colors.colorValid}}>
@@ -159,9 +184,9 @@ export class RNDevToolboxDev extends RNDevToolboxBase {
       <View style={styles.toolboxContainer}>
         {Debug}
         <View style={styles.indicatorsContainer}>
-          {Object.keys(indicators).map((key, i) => (
+          {indicators.map((indicator, i) => (
             <View key={i} style={styles.indicatorContainer}>
-              <Text>{this._formatIndicator(indicators, key)}</Text>
+              <Text>{this._formatIndicator(indicator)}</Text>
             </View>
           ))}
         </View>
