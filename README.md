@@ -166,10 +166,10 @@ Open, close or toggle the toolbox visibility
 Print any information to the toolbox
 
 
-### `registerAction(action: Action | Array<Action>): void`
+#### `registerAction(action: Action | Array<Action>): void`
 Register an action or an array of action.
 
-### `processAction(name: string): void`
+#### `processAction(name: string): void`
 Execute one of your actions
 
 
