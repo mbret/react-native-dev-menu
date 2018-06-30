@@ -2,7 +2,7 @@
   "name": "rn-dev-toolbox",
   "version": "0.1.2",
   "scripts": {
-    "test": "jest --config test/jest.config.js",
+    "test": "jest",
     "flow": "flow",
     "standard": "standard"
   },
@@ -11,26 +11,27 @@
     "url": "https://github.com/mbret/rn-dev-toolbox"
   },
   "dependencies": {
-    "hoist-non-react-statics": "^2.5.5"
+    "hoist-non-react-statics": "^2.5.5",
+    "memoize-one": "^4.0.0"
   },
   "peerDependencies": {
     "react": "^16.4.0",
     "react-native": "^0.56"
   },
   "devDependencies": {
-    "@babel/core": "^7.0.0-beta.51",
-    "@babel/preset-env": "^7.0.0-beta.51",
-    "@babel/preset-flow": "^7.0.0-beta.51",
-    "babel-core": "^7.0.0-bridge.0",
+    "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.5",
+    "babel-jest": "^23.2.0",
     "babel-preset-react-native": "^4.0.0",
-    "coveralls": "^3.0.1",
+    "coveralls": "^3.0.2",
     "eslint": "^5.0.1",
     "eslint-plugin-flowtype": "^2.49.3",
     "flow-bin": "0.75.0",
     "jest": "^23.2.0",
+    "jest-react-native": "^18.0.0",
     "react": "16.4.1",
-    "react-native": "^0.56.0-rc.4",
+    "react-native": "^0.55.4",
+    "react-test-renderer": "^16.4.1",
     "standard": "^11.0.1"
   },
   "main": "src/index.js",
@@ -48,5 +49,18 @@
     "globals": [
       "__DEV__"
     ]
+  },
+  "jest": {
+    "verbose": true,
+    "preset": "react-native",
+    "setupTestFrameworkScriptFile": "<rootDir>/test/setupTests.js",
+    "coverageThreshold": {
+      "global": {
+        "branches": 50,
+        "lines": 60,
+        "statements": 60,
+        "functions": 70
+      }
+    }
   }
 }

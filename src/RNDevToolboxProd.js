@@ -4,8 +4,17 @@
 import React from 'react'
 import { RNDevToolboxBase } from './RNDevToolboxBase'
 import { RNDevToolboxContext } from './RNDevToolboxContext'
+import type { RNDevToolboxProps, RNDevToolboxState } from './RNDevToolboxBase'
 
-export class RNDevToolboxProd extends RNDevToolboxBase<{}, {}> {
+export class RNDevToolboxProd extends RNDevToolboxBase<RNDevToolboxProps<{}>, RNDevToolboxState<{}>> {
+  state = {
+    opened: false,
+    actions: [],
+    debug: null,
+    indicators: [],
+    tipsModalVisible: false
+  }
+
   /**
    * Never update the comp
    * @returns {boolean}

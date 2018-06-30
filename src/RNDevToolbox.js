@@ -11,7 +11,9 @@ export class RNDevToolbox extends PureComponent<RNDevToolboxProps<{}>> {
   static VALID = style.colors.colorValid
   static DANGER = style.colors.colorError
 
-  useProd = () => (this.props.enable === false || (!__DEV__ && this.props.enable === false))
+  useProd = () => {
+    return (this.props.enable === false || (this.props.enable === false || !__DEV__))
+  }
 
   render () {
     return this.useProd() ? <RNDevToolboxProd {...this.props} /> : <RNDevToolboxDev {...this.props} />

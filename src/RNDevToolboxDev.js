@@ -63,7 +63,7 @@ export class RNDevToolboxDev extends RNDevToolboxBase<LocalState, localState> {
   /**
    * {@inheritDoc}
    */
-  registerAction = (action: Action): void => {
+  registerAction = (action: Action | Array<Action>): void => {
     this.setState(state => ({
       actions: state.actions.concat(Array.isArray(action) ? action : [action])
     }))
@@ -145,7 +145,7 @@ export class RNDevToolboxDev extends RNDevToolboxBase<LocalState, localState> {
 
     const Debug = (
       <Text style={{color: isError(this.state.debug) ? style.colors.colorError : style.colors.colorValid}}>
-        {isError(this.state.debug) ? this.state.debug.toString() : this.state.debug}
+        {this.state.debug && isError(this.state.debug) ? this.state.debug.toString() : this.state.debug}
       </Text>
     )
 

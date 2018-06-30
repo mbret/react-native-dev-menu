@@ -10,7 +10,7 @@ export interface RNDevToolboxInterface {
 
   processAction (name: string): void;
 
-  registerAction (action: Action): void;
+  registerAction (action: Action | Array<Action>): void;
 
   open (): void;
 
@@ -30,7 +30,7 @@ export type RNDevToolboxProps<P> = {
 
 export type RNDevToolboxState<S> = {
   tipsModalVisible: boolean,
-  debug: string,
+  debug: ?any,
   indicators: Array<Indicator>,
   opened: boolean,
   actions: Array<Action>,
@@ -45,7 +45,7 @@ export class RNDevToolboxBase<P, S> extends Component<RNDevToolboxProps<P>, RNDe
 
   processAction = (name: string) => {}
 
-  registerAction = (action: Action) => {}
+  registerAction = (action: Action | Array<Action>) => {}
 
   debug = (debug: any) => this.setState({debug})
 
