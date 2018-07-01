@@ -36,7 +36,7 @@
   },
   "main": "src/index.js",
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "description": "",
   "standard": {
     "parser": "babel-eslint",
