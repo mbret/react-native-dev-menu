@@ -12,6 +12,10 @@
 Free your code from ugly logs and code during your debug process and give happiness to your tester team. This package
 will let you create automated task and display information to help you during development.
 
+For example you could add actions that navigate to specific view with pre-filled data (sign in, sign up, ..) or an action
+that clear your cache, storage, auth, etc. Use it to have quick and easy way to help you test and debug your app. You can
+do pretty much anything you want.
+
 ## Installation
 **This package does not have a bundle yet, it only provides source code which means that you need to support `flow` and es6 modules.**
 ```
