@@ -12,7 +12,11 @@ export class RNDevToolbox extends PureComponent<RNDevToolboxProps<{}>> {
   static DANGER = style.colors.colorError
 
   useProd = () => {
-    return (this.props.enable === false || (this.props.enable === false || !__DEV__))
+    // forced enabled
+    if (this.props.enable === true) return false
+
+    // prod env ?
+    return !__DEV__
   }
 
   render () {
