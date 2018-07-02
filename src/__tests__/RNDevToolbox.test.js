@@ -13,5 +13,8 @@ describe('<RNDevToolbox>', () => {
 
     const b = renderer.create(<RNDevToolbox enable={false} />).toJSON()
     expect(b).toMatchSnapshot()
+
+    const c = renderer.create(<RNDevToolbox enable />).toJSON()
+    expect(c).toMatchSnapshot()
   })
 })
