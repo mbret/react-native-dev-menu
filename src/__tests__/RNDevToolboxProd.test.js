@@ -16,12 +16,6 @@ describe('<RNDevToolboxProd>', () => {
     expect(b).toMatchSnapshot()
   })
 
-  test('.shouldComponentUpdate()', () => {
-    const myComp = renderer.create(<RNDevToolboxProd />).getInstance()
-
-    expect(myComp.shouldComponentUpdate()).toBe(false)
-  })
-
   test('.registerAction()', () => {
     const myComp = renderer.create(<RNDevToolboxProd />).getInstance()
 

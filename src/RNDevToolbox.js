@@ -15,6 +15,8 @@ export class RNDevToolbox extends PureComponent<RNDevToolboxProps<{}>> {
     // forced enabled
     if (this.props.enable === true) return false
 
+    if (this.props.enable === false) return true
+
     // prod env ?
     return !__DEV__
   }

@@ -16,14 +16,6 @@ export class RNDevToolboxProd extends RNDevToolboxBase<RNDevToolboxProps<{}>, RN
   }
 
   /**
-   * Never update the comp
-   * @returns {boolean}
-   */
-  shouldComponentUpdate () {
-    return false
-  }
-
-  /**
    * We only render children inside context
    * to no broke the global api
    * @returns {function}
