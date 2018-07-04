@@ -19,7 +19,7 @@ do pretty much anything you want.
 ## Installation
 **This package does not have a bundle yet, it only provides source code which means that you need to support `flow` and es6 modules.**
 ```
-npm install rn-dev-toolbar
+npm install rn-dev-toolbox
 ```
 You can't install this module as a devDependendies as it's present in your code.
 
