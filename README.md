@@ -68,8 +68,8 @@ class Root extends Component<{
         actions={[
           {
             name: 'Clear storage',
-            job: () => AsyncStorage.clear()
-          },
+            task: () => AsyncStorage.clear()
+          }
         ]}
       >
         <Text>My Awesome app</Text>
@@ -125,7 +125,7 @@ class Root extends Component<{}, {
           {
             label: 'Clear storage',
             name: 'clearStorage',
-            job: () => AsyncStorage.clear()
+            task: () => AsyncStorage.clear()
           },
         ]}
       >
