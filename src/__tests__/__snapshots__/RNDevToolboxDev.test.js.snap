@@ -33,11 +33,7 @@ exports[`<RNDevToolboxDev> renders correctly 1`] = `
             }
           }
         >
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-          >
+          <Text>
             Open developer menu: Check your phone or CTRL+M (windows)
           </Text>
         </View>
@@ -56,11 +52,7 @@ exports[`<RNDevToolboxDev> renders correctly 1`] = `
             }
           }
         >
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-          >
+          <Text>
             Hide Modal
           </Text>
         </View>
@@ -98,9 +90,6 @@ exports[`<RNDevToolboxDev> renders correctly 1`] = `
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Object {
             "color": "white",

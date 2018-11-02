@@ -152,7 +152,7 @@ class Footer extends Component<{
   rnDevToolbox: RNDevToolboxInterface
 }, {}> {
   componentDidMount () {
-    this.rnDevToolbox.processAction('clearStorage')
+    this.props.rnDevToolbox.processAction('clearStorage')
   }
 
   render() {
