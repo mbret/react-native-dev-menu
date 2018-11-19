@@ -47,11 +47,11 @@ export class RNDevToolboxBase<P, S> extends Component<RNDevToolboxProps<P>, RNDe
 
   registerAction = (action: Action | Array<Action>) => {}
 
-  debug = (debug: any) => this.setState({debug})
+  debug = (debug: any) => this.setState({ debug })
 
-  open = () => this.setState({opened: true})
+  open = () => this.setState({ opened: true })
 
-  close = () => this.setState({opened: false})
+  close = () => this.setState({ opened: false })
 
   toggle = () => this.state.opened ? this.close() : this.open()
 }

@@ -45,7 +45,7 @@ export class RNDevToolboxDev extends RNDevToolboxBase<LocalState, localState> {
     if (actions === nextState.actions) return null
 
     // update actions
-    return {actions}
+    return { actions }
   }
 
   computeIndicators = memoizeOne((indicators?: Array<Indicator> = emptyIndicators) => [...this.state.indicators, ...indicators])
@@ -120,7 +120,7 @@ export class RNDevToolboxDev extends RNDevToolboxBase<LocalState, localState> {
   }
 
   _toggleTipsModalVisible = () => {
-    this.setState(state => ({tipsModalVisible: !state.tipsModalVisible}))
+    this.setState(state => ({ tipsModalVisible: !state.tipsModalVisible }))
   }
 
   _formatIndicator = (indicator: Indicator) => {
@@ -133,7 +133,7 @@ export class RNDevToolboxDev extends RNDevToolboxBase<LocalState, localState> {
       : (
         <Text>
           <Text>{key}: </Text>
-          <Text style={{color}}>
+          <Text style={{ color }}>
             {value}
           </Text>
         </Text>
@@ -144,7 +144,7 @@ export class RNDevToolboxDev extends RNDevToolboxBase<LocalState, localState> {
     const indicators = this.computeIndicators(this.props.indicators)
 
     const Debug = (
-      <Text style={{color: isError(this.state.debug) ? style.colors.colorError : style.colors.colorValid}}>
+      <Text style={{ color: isError(this.state.debug) ? style.colors.colorError : style.colors.colorValid }}>
         {this.state.debug && isError(this.state.debug) ? this.state.debug.toString() : this.state.debug}
       </Text>
     )
@@ -175,7 +175,7 @@ export class RNDevToolboxDev extends RNDevToolboxBase<LocalState, localState> {
 
     const Button = (
       <TouchableOpacity style={styles.triggerButton} onPress={this.toggle} underlayColor='#ff7043'>
-        <Text style={{color: 'white'}}>{this.state.opened ? '-' : '+'}</Text>
+        <Text style={{ color: 'white' }}>{this.state.opened ? '-' : '+'}</Text>
       </TouchableOpacity>
     )
 

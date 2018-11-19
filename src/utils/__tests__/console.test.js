@@ -1,5 +1,5 @@
 /* eslint-env jest */
-const {warn, deprecate} = require('../console')
+const { warn, deprecate } = require('../console')
 const _originalWarn = console.warn
 // mock
 console.warn = () => {}

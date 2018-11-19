@@ -23,7 +23,7 @@ export class RNTipsModal extends PureComponent<Props> {
         transparent={false}
         visible={this.props.visible}
         onRequestClose={this.props.onRequestClose}>
-        <View style={{padding: 10, paddingBottom: -10}}>
+        <View style={{ padding: 10, paddingBottom: -10 }}>
           <View>
             <View syle={{
               backgroundColor: '#dcdcdcd6',

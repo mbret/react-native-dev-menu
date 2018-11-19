@@ -19,7 +19,7 @@ describe('<RNDevToolboxProd>', () => {
   test('.registerAction()', () => {
     const myComp = renderer.create(<RNDevToolboxProd />).getInstance()
 
-    expect(myComp.registerAction({name: 'foo', task: () => {}})).toBe(undefined)
+    expect(myComp.registerAction({ name: 'foo', task: () => {} })).toBe(undefined)
   })
 
   test('.processAction()', () => {
@@ -50,7 +50,7 @@ describe('<RNDevToolboxProd>', () => {
     const myComp = renderer.create(<RNDevToolboxProd />).getInstance()
 
     expect(myComp.toggle()).toBe(undefined)
-    myComp.setState({opened: true})
+    myComp.setState({ opened: true })
     expect(myComp.toggle()).toBe(undefined)
   })
 })
