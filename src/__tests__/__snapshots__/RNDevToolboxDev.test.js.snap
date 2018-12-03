@@ -8,6 +8,9 @@ exports[`<RNDevToolboxDev> renders correctly 1`] = `
     }
   }
 >
+  <Text>
+    false
+  </Text>
   <Modal
     animationType="fade"
     hardwareAccelerated={false}

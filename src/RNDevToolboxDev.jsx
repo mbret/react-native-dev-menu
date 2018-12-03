@@ -18,24 +18,27 @@ const emptyActions = []
 
 type localState = { defaultActions: Array<Action> }
 type State = RNDevToolboxState<localState>
-type LocalState = {}
-type Props = RNDevToolboxProps<LocalState>
+type LocalProps = {}
+type Props = RNDevToolboxProps<LocalProps>
 
-export class RNDevToolboxDev extends RNDevToolboxBase<LocalState, localState> {
-  state = {
-    opened: false,
-    useDev: __DEV__,
-    debug: 'Ready',
-    tipsModalVisible: false,
-    actions: [],
-    indicators: [
-      ['__DEV__', __DEV__ ? 'true' : 'false'],
-      ['NODE_ENV', process.env.NODE_ENV || '']
-    ],
-    defaultActions: [{
-      name: 'Tips',
-      task: () => this._toggleTipsModalVisible
-    }]
+export class RNDevToolboxDev extends RNDevToolboxBase<LocalProps, localState> {
+  constructor (props) {
+    super(props)
+    this.state = {
+      opened: false,
+      useDev: __DEV__,
+      debug: 'Ready',
+      tipsModalVisible: false,
+      actions: [],
+      indicators: [
+        ['__DEV__', __DEV__ ? 'true' : 'false'],
+        ['NODE_ENV', process.env.NODE_ENV || '']
+      ],
+      defaultActions: [{
+        name: 'Tips',
+        task: () => this._toggleTipsModalVisible
+      }]
+    }
   }
 
   static getDerivedStateFromProps (nextProps: Props, nextState: State) {
@@ -182,6 +185,7 @@ export class RNDevToolboxDev extends RNDevToolboxBase<LocalState, localState> {
     return (
       <RNDevToolboxContext.Provider value={this}>
         <View style={styles.masterContainer}>
+          <Text>{String(this.state.tipsModalVisible)}</Text>
           <RNTipsModal visible={this.state.tipsModalVisible} onRequestClose={this._toggleTipsModalVisible} />
           <View style={styles.container}>
             {this.state.opened && Toolbox}

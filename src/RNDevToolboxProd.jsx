@@ -7,12 +7,15 @@ import { RNDevToolboxContext } from './RNDevToolboxContext'
 import type { RNDevToolboxProps, RNDevToolboxState } from './RNDevToolboxBase'
 
 export class RNDevToolboxProd extends RNDevToolboxBase<RNDevToolboxProps<{}>, RNDevToolboxState<{}>> {
-  state = {
-    opened: false,
-    actions: [],
-    debug: null,
-    indicators: [],
-    tipsModalVisible: false
+  constructor (props) {
+    super(props)
+    this.state = {
+      opened: false,
+      actions: [],
+      debug: null,
+      indicators: [],
+      tipsModalVisible: false
+    }
   }
 
   /**

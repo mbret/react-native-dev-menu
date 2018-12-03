@@ -2,6 +2,6 @@
 
 exports[`withRNDevToolbox renders correctly 1`] = `
 <Text
-  rnDevToolbox={Object {}}
+  rnDevToolbox={null}
 />
 `;

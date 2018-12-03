@@ -11,26 +11,22 @@
     "url": "https://github.com/mbret/rn-dev-toolbox"
   },
   "dependencies": {
-    "eslint": "^5.9.0",
-    "hoist-non-react-statics": "3.1.0",
+    "hoist-non-react-statics": "3.2.0",
     "memoize-one": "4.0.3"
   },
   "peerDependencies": {
-    "react": "^16.4",
-    "react-native": "^0.56 | ^0.57"
+    "react-native": "0.56.x | 0.57.x"
   },
   "devDependencies": {
-    "babel-core": "6.26.3",
     "babel-eslint": "10.0.1",
     "babel-jest": "23.6.0",
-    "babel-preset-react-native": "4.0.1",
     "coveralls": "3.0.2",
     "eslint-plugin-flowtype": "3.2.0",
-    "flow-bin": "0.85.0",
+    "flow-bin": "0.87.0",
     "jest": "23.6.0",
-    "jest-react-native": "18.0.0",
-    "react": "16.6.0",
-    "react-native": "0.57.5",
+    "metro-react-native-babel-preset": "0.50.0",
+    "react": "16.6.3",
+    "react-native": "0.57.7",
     "react-test-renderer": "16.6.3",
     "standard": "12.0.1"
   },
@@ -54,6 +50,9 @@
     "verbose": true,
     "preset": "react-native",
     "setupTestFrameworkScriptFile": "<rootDir>/test/setupTests.js",
+    "transform": {
+      "^.+\\.(js|jsx)$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
+    },
     "coverageThreshold": {
       "global": {
         "branches": 50,

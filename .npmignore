@@ -1,5 +1,6 @@
 .idea
 flow-typed
 .babelrc
+babel.config.js
 coverage
 docs
