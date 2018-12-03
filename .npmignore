@@ -4,3 +4,7 @@ flow-typed
 babel.config.js
 coverage
 docs
+.travis.yml
+.jsbeautifyrc
+test
+.vscode

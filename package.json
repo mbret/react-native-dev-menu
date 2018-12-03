@@ -4,7 +4,9 @@
   "scripts": {
     "test": "jest",
     "flow": "flow",
-    "standard": "standard"
+    "standard": "standard",
+    "prepublish": "npm run dist",
+    "dist": "babel src --out-dir dist"
   },
   "repository": {
     "type": "git",
@@ -18,6 +20,7 @@
     "react-native": "0.56.x | 0.57.x"
   },
   "devDependencies": {
+    "@babel/cli": "^7.1.5",
     "babel-eslint": "10.0.1",
     "babel-jest": "23.6.0",
     "coveralls": "3.0.2",
@@ -30,7 +33,7 @@
     "react-test-renderer": "16.6.3",
     "standard": "12.0.1"
   },
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "author": "Maxime Bret",
   "license": "MIT",
   "description": "",
