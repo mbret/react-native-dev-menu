@@ -22,7 +22,7 @@ type LocalProps = {}
 type Props = RNDevToolboxProps<LocalProps>
 
 export class RNDevToolboxDev extends RNDevToolboxBase<LocalProps, localState> {
-  constructor (props) {
+  constructor (props: Props) {
     super(props)
     this.state = {
       opened: false,
