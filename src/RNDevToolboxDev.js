@@ -22,8 +22,15 @@ type LocalProps = {}
 type Props = RNDevToolboxProps<LocalProps>
 
 export class RNDevToolboxDev extends RNDevToolboxBase<LocalProps, localState> {
-  constructor (props: Props) {
+  constructor(props: Props) {
     super(props)
+    // theses lines are mandatory as rn 57 does not support
+    // class properties yet
+    this.toggle = this.toggle.bind(this)
+    this.debug = this.debug.bind(this)
+    this.close = this.close.bind(this)
+    this.open = this.open.bind(this)
+    this._toggleTipsModalVisible = this._toggleTipsModalVisible.bind(this)
     this.state = {
       opened: false,
       useDev: __DEV__,
@@ -36,7 +43,7 @@ export class RNDevToolboxDev extends RNDevToolboxBase<LocalProps, localState> {
       ],
       defaultActions: [{
         name: 'Tips',
-        task: () => this._toggleTipsModalVisible
+        task: () => this._toggleTipsModalVisible()
       }]
     }
   }
@@ -66,7 +73,7 @@ export class RNDevToolboxDev extends RNDevToolboxBase<LocalProps, localState> {
   /**
    * {@inheritDoc}
    */
-  registerAction = (action: Action | Array<Action>): void => {
+  registerAction (action: Action | Array<Action>): void {
     this.setState(state => ({
       actions: state.actions.concat(Array.isArray(action) ? action : [action])
     }))
@@ -75,7 +82,7 @@ export class RNDevToolboxDev extends RNDevToolboxBase<LocalProps, localState> {
   /**
    * {@inheritDoc}
    */
-  processAction = (name: string): void => {
+  processAction (name: string): void {
     const actionOver = () => this.debug(`Action ${name} done!`)
     this.state.actions.forEach(action => {
       if (action.name === name) {
@@ -96,7 +103,7 @@ export class RNDevToolboxDev extends RNDevToolboxBase<LocalProps, localState> {
     })
   }
 
-  _persist = (prevState: State) => {
+  _persist (prevState: State) {
     // should we persist ?
     if (this.state.opened !== prevState.opened) {
       if (this.props.persistenceProvider) {
@@ -109,7 +116,7 @@ export class RNDevToolboxDev extends RNDevToolboxBase<LocalProps, localState> {
     }
   }
 
-  _restore = () => {
+  _restore () {
     if (this.props.persistenceProvider) {
       this.props.persistenceProvider
         .getItem(PERSISTENCE_KEY)
@@ -122,11 +129,11 @@ export class RNDevToolboxDev extends RNDevToolboxBase<LocalProps, localState> {
     }
   }
 
-  _toggleTipsModalVisible = () => {
+  _toggleTipsModalVisible () {
     this.setState(state => ({ tipsModalVisible: !state.tipsModalVisible }))
   }
 
-  _formatIndicator = (indicator: Indicator) => {
+  _formatIndicator (indicator: Indicator) {
     const [key, value, color] = Array.isArray(indicator) ? indicator : [indicator]
 
     return !Array.isArray(indicator)
@@ -144,6 +151,7 @@ export class RNDevToolboxDev extends RNDevToolboxBase<LocalProps, localState> {
   }
 
   render () {
+    const { opened } = this.state
     const indicators = this.computeIndicators(this.props.indicators)
 
     const Debug = (
@@ -176,21 +184,16 @@ export class RNDevToolboxDev extends RNDevToolboxBase<LocalProps, localState> {
       </View>
     )
 
-    const Button = (
-      <TouchableOpacity style={styles.triggerButton} onPress={this.toggle} underlayColor='#ff7043'>
-        <Text style={{ color: 'white' }}>{this.state.opened ? '-' : '+'}</Text>
-      </TouchableOpacity>
-    )
-
     return (
       <RNDevToolboxContext.Provider value={this}>
         <View style={styles.masterContainer}>
-          <Text>{String(this.state.tipsModalVisible)}</Text>
           <RNTipsModal visible={this.state.tipsModalVisible} onRequestClose={this._toggleTipsModalVisible} />
           <View style={styles.container}>
-            {this.state.opened && Toolbox}
+            {opened && Toolbox}
             {this.props.children}
-            {Button}
+            <TouchableOpacity style={styles.triggerButton} onPress={this.toggle} underlayColor='#ff7043'>
+              <Text style={{ color: 'white' }}>{opened ? '-' : '+'}</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </RNDevToolboxContext.Provider>

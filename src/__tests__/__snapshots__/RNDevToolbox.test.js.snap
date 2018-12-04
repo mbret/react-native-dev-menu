@@ -8,9 +8,6 @@ exports[`<RNDevToolbox> renders correctly 1`] = `
     }
   }
 >
-  <Text>
-    false
-  </Text>
   <Modal
     animationType="fade"
     hardwareAccelerated={false}
@@ -116,9 +113,6 @@ exports[`<RNDevToolbox> renders correctly 3`] = `
     }
   }
 >
-  <Text>
-    false
-  </Text>
   <Modal
     animationType="fade"
     hardwareAccelerated={false}

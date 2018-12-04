@@ -6,4 +6,4 @@ import type {
   RNDevToolboxInterface
 } from './RNDevToolboxBase'
 
-export const RNDevToolboxContext = React.createContext < RNDevToolboxInterface | null >(null)
+export const RNDevToolboxContext = React.createContext<RNDevToolboxInterface | null>(null)

@@ -1,12 +1,14 @@
 {
   "name": "rn-dev-toolbox",
   "version": "0.2.2",
+  "main": "dist/index.js",
   "scripts": {
     "test": "jest",
     "flow": "flow",
     "standard": "standard",
     "prepublishOnly": "npm run dist",
-    "dist": "babel src --out-dir dist"
+    "dist:babel": "rm -rf dist/ && babel src/ --out-dir dist/",
+    "dist": "npm run dist:babel"
   },
   "repository": {
     "type": "git",
@@ -26,6 +28,7 @@
     "coveralls": "3.0.2",
     "eslint-plugin-flowtype": "3.2.0",
     "flow-bin": "0.87.0",
+    "flow-remove-types": "^1.2.3",
     "jest": "23.6.0",
     "metro-react-native-babel-preset": "0.50.0",
     "react": "16.6.3",
@@ -33,7 +36,6 @@
     "react-test-renderer": "16.6.3",
     "standard": "12.0.1"
   },
-  "main": "dist/index.js",
   "author": "Maxime Bret",
   "license": "MIT",
   "description": "",
@@ -54,7 +56,7 @@
     "preset": "react-native",
     "setupTestFrameworkScriptFile": "<rootDir>/test/setupTests.js",
     "transform": {
-      "^.+\\.(js|jsx)$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
+      "^.+\\.(js)$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
     },
     "coverageThreshold": {
       "global": {
