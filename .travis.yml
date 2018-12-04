@@ -9,6 +9,7 @@ script:
   - npm run standard
   - npm run flow
 deploy:
+  skip_cleanup: true # prevents travis from deleting the build
   provider: npm
   email: bret.maxime@gmail.com
   api_key: $NPM_TOKEN
