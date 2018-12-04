@@ -5,7 +5,7 @@
     "test": "jest",
     "flow": "flow",
     "standard": "standard",
-    "prepublish": "npm run dist",
+    "prepublishOnly": "npm run dist",
     "dist": "babel src --out-dir dist"
   },
   "repository": {
