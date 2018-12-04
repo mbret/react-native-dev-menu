@@ -22,7 +22,9 @@ type LocalProps = {}
 type Props = RNDevToolboxProps<LocalProps>
 
 export class RNDevToolboxDev extends RNDevToolboxBase<LocalProps, localState> {
-  constructor(props: Props) {
+  _toggleTipsModalVisible: Function
+
+  constructor (props: Props) {
     super(props)
     // theses lines are mandatory as rn 57 does not support
     // class properties yet
