@@ -1,12 +1,12 @@
+/* eslint no-unused-vars:0 */
 /**
- * @flow
+ *
  */
 import React from 'react'
-import { RNDevToolboxBase } from './RNDevToolboxBase'
 import { RNDevToolboxContext } from './RNDevToolboxContext'
-import type { RNDevToolboxProps, RNDevToolboxState } from './RNDevToolboxBase'
+import { RNDevToolboxProps, RNDevToolboxState, RNDevToolboxBase } from './RNDevToolboxBase'
 
-export class RNDevToolboxProd extends RNDevToolboxBase<RNDevToolboxProps<{}>, RNDevToolboxState<{}>> {
+export class RNDevToolboxProd extends RNDevToolboxBase<RNDevToolboxProps<{}>, RNDevToolboxState> {
   constructor (props: RNDevToolboxProps<{}>) {
     super(props)
     this.state = {

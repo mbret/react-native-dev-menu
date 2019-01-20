@@ -25,7 +25,7 @@ exports[`<RNDevToolbox> renders correctly 1`] = `
     >
       <View>
         <View
-          syle={
+          style={
             Object {
               "backgroundColor": "#dcdcdcd6",
               "margin": 1,
@@ -130,7 +130,7 @@ exports[`<RNDevToolbox> renders correctly 3`] = `
     >
       <View>
         <View
-          syle={
+          style={
             Object {
               "backgroundColor": "#dcdcdcd6",
               "margin": 1,

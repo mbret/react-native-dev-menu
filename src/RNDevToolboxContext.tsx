@@ -1,8 +1,9 @@
+/* eslint no-unused-vars:0 */
 /**
- * @flow
+ *
  */
 import React from 'react'
-import type {
+import {
   RNDevToolboxInterface
 } from './RNDevToolboxBase'
 

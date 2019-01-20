@@ -1,5 +1,5 @@
 /**
- * @flow
+ *
  */
 export type Action = {
   name: string,
@@ -7,10 +7,10 @@ export type Action = {
   label?: string
 }
 
-export type Indicator = string | Array<string>
+export type Indicator = string | [string, string?, string?]
 
 export type PersistenceProvider = {
-  getItem (key: string): Promise<?string>,
+  getItem (key: string): Promise<string | undefined>,
 
   setItem (key: string, value: string): Promise<void>
 }

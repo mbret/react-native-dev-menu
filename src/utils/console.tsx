@@ -1,11 +1,11 @@
 /**
- * @flow
+ *
  */
-import myPackage from '../../package'
+import myPackage from '../../package.json'
 
-let deprecationsSeen = {}
+let deprecationsSeen: any = {}
 
-const consoleWarn = (...args) => {
+const consoleWarn = (...args: any[]) => {
   if (typeof console === 'object' && typeof console.warn === 'function') {
     console.warn(...args)
   }

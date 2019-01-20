@@ -1,21 +1,22 @@
-/* global $Diff */
+/* eslint no-unused-vars:0 */
 /**
- * @flow
+ *
  */
-import React, { Component } from 'react'
+import React, { Component, ComponentType } from 'react'
 import { RNDevToolboxContext } from './RNDevToolboxContext'
 import hoistStatics from 'hoist-non-react-statics'
-import type { ComponentType } from 'react'
-import type { RNDevToolboxInterface } from './RNDevToolboxBase'
+import { RNDevToolboxInterface } from './RNDevToolboxBase'
+
+type OwnProps = { rnDevToolbox?: RNDevToolboxInterface | void }
 
 /**
  * Inject the dev tool instance into the component.
  * @see https://flow.org/en/docs/react/hoc/
  */
-export function withRNDevToolbox<Props: {}> (
-  BaseComponent: ComponentType<Props>
-): ComponentType<$Diff<Props, { rnDevToolbox: RNDevToolboxInterface | void }>> {
-  class ComponentWithRNDevToolbox extends Component<*> {
+export function withRNDevToolbox<P> (
+  BaseComponent: ComponentType<P & OwnProps>
+): ComponentType<P> {
+  class ComponentWithRNDevToolbox extends Component<P & OwnProps> {
     render () {
       return (
         <RNDevToolboxContext.Consumer>

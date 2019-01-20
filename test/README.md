@@ -1,0 +1,1 @@
+`preprocessor.js` is a fix of `<rootDir>/node_modules/react-native/jest/preprocessor.js` using https://github.com/facebook/react-native/issues/22437

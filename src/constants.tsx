@@ -1,5 +1,5 @@
 /**
- * @flow
+ *
  */
 export const PERSISTENCE_KEY = 'rnDevToolbox'
 export const style = {
