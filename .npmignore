@@ -1,10 +1,12 @@
 .idea
 flow-typed
 .babelrc
-babel.config.js
+rollup.config.js
 coverage
-docs
+resources
 .travis.yml
 .jsbeautifyrc
+tsconfig.json
 test
 .vscode
+types

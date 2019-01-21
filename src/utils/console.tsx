@@ -1,12 +1,12 @@
 /**
  *
  */
-import myPackage from '../../package.json'
+import { name } from '../../package.json'
 
 let deprecationsSeen: any = {}
 
 const consoleWarn = (...args: any[]) => {
-  if (typeof console === 'object' && typeof console.warn === 'function') {
+  if (__DEV__ && typeof console === 'object' && typeof console.warn === 'function') {
     console.warn(...args)
   }
 }
@@ -14,10 +14,10 @@ const consoleWarn = (...args: any[]) => {
 export const deprecate = (msg: any) => {
   if (!deprecationsSeen[msg]) {
     deprecationsSeen[msg] = true
-    consoleWarn(`${myPackage.name} | DEPRECATION: ${msg}`)
+    consoleWarn(`${name} | DEPRECATION: ${msg}`)
   }
 }
 
 export const warn = (msg: string) => {
-  consoleWarn(`${myPackage.name} | WARNING: ${msg}`)
+  consoleWarn(`${name} | WARNING: ${msg}`)
 }
