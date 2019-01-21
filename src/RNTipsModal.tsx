@@ -4,8 +4,8 @@
 import React, { PureComponent } from 'react'
 import { View, Text, Modal, TouchableOpacity, StyleSheet } from 'react-native'
 import tips from '../resources/tips.json'
+import { Tips } from './types.js';
 
-console.log(tips)
 type Props = {
   visible: boolean,
   onRequestClose: () => void
@@ -19,18 +19,13 @@ export class RNTipsModal extends PureComponent<Props> {
         transparent={false}
         visible={this.props.visible}
         onRequestClose={this.props.onRequestClose}>
-        <View style={{ padding: 10, paddingBottom: -10 }}>
+        <View style={styles.container}>
           <View>
-            <Text>{Object.keys(tips)}</Text>
-            {Object.keys(tips).map(() => {(
-              <View style={{
-                backgroundColor: '#dcdcdcd6',
-                padding: 2,
-                margin: 1
-              }}>
-                <Text >Open developer menu: Check your phone or CTRL+M (windows)</Text>
+            {Object.keys(tips).map((key, i) => (
+              <View key={i} style={styles.tipContainer}>
+                <Text ><Text style={styles.label}>{key}:</Text> {(tips as Tips)[key]}</Text>
               </View>
-            )})}
+            ))}
             <TouchableOpacity
               style={styles.modal}
               onPress={this.props.onRequestClose}>
@@ -49,5 +44,14 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     backgroundColor: '#dcdcdcd6',
     padding: 5,
+  },
+  container: { padding: 10, paddingBottom: -10 },
+  tipContainer: {
+    backgroundColor: '#dcdcdcd6',
+    padding: 2,
+    margin: 1
+  },
+  label: {
+    fontWeight: "bold"
   }
 })

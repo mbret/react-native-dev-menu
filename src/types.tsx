@@ -14,3 +14,7 @@ export type PersistenceProvider = {
 
   setItem (key: string, value: string): Promise<void>
 }
+
+export type Tips = {
+  [key: string]: string
+}

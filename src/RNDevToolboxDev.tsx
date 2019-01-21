@@ -33,9 +33,9 @@ export class RNDevToolboxDev extends RNDevToolboxBase<LocalProps, localState> {
     this.open = this.open.bind(this)
     this._toggleTipsModalVisible = this._toggleTipsModalVisible.bind(this)
     this.state = {
-      opened: true,//false,
+      opened: false,
       debug: 'Ready',
-      tipsModalVisible: true,//false,
+      tipsModalVisible: false,
       actions: [],
       indicators: [
         // ['__DEV__', __DEV__ ? 'true' : 'false'],
