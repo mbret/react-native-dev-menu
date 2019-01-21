@@ -34,7 +34,18 @@ exports[`<RNDevToolboxDev> renders correctly 1`] = `
           }
         >
           <Text>
-            Open developer menu: Check your phone or CTRL+M (windows)
+            <Text
+              style={
+                Object {
+                  "fontWeight": "bold",
+                }
+              }
+            >
+              Open developer menu
+              :
+            </Text>
+             
+            Check gesture on real device. Command+D on iOS. Ctrl+M on Android
           </Text>
         </View>
         <View
@@ -48,7 +59,11 @@ exports[`<RNDevToolboxDev> renders correctly 1`] = `
           onStartShouldSetResponder={[Function]}
           style={
             Object {
+              "alignSelf": "center",
+              "backgroundColor": "#dcdcdcd6",
+              "marginTop": 10,
               "opacity": 1,
+              "padding": 5,
             }
           }
         >

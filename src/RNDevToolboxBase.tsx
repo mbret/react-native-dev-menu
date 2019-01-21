@@ -37,7 +37,6 @@ export type RNDevToolboxState = {
 }
 
 export abstract class RNDevToolboxBase<P = {}, S = {}> extends Component<RNDevToolboxProps<P>, S & RNDevToolboxState> implements RNDevToolboxInterface {
-
   componentDidMount () {
     if (this.props.onRef) {
       this.props.onRef(this)

@@ -1,10 +1,11 @@
+/* eslint no-unused-vars:0 */
 /**
  *
  */
 import React, { PureComponent } from 'react'
 import { View, Text, Modal, TouchableOpacity, StyleSheet } from 'react-native'
 import tips from '../resources/tips.json'
-import { Tips } from './types.js';
+import { Tips } from './types.js'
 
 type Props = {
   visible: boolean,
@@ -12,7 +13,7 @@ type Props = {
 };
 
 export class RNTipsModal extends PureComponent<Props> {
-  render() {
+  render () {
     return (
       <Modal
         animationType='fade'
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     alignSelf: 'center',
     backgroundColor: '#dcdcdcd6',
-    padding: 5,
+    padding: 5
   },
   container: { padding: 10, paddingBottom: -10 },
   tipContainer: {
@@ -52,6 +53,6 @@ const styles = StyleSheet.create({
     margin: 1
   },
   label: {
-    fontWeight: "bold"
+    fontWeight: 'bold'
   }
 })
