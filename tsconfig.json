@@ -1,0 +1,30 @@
+{
+    "compilerOptions": {
+      "allowJs": true,
+      "allowSyntheticDefaultImports": true,
+      "esModuleInterop": true,
+      // rollup should make sure we don't have type export with typescript()
+      // "isolatedModules": true,
+      "resolveJsonModule": true,
+      "jsx": "react-native",
+      "lib": [
+        "es6"
+      ],
+      "moduleResolution": "node",
+      "noEmit": true,
+      "strict": true,
+      "target": "esnext",
+      "types": [
+        "react",
+        "react-native",
+        "jest"
+      ],
+      // "declaration": true,
+      // "declarationDir": "d",
+      // "emitDeclarationOnly": true
+    },
+    "exclude": [
+      "node_modules",
+      "dist"
+    ]
+  }

@@ -1,28 +1,27 @@
+/* eslint no-unused-vars:0 */
 /**
- * @flow
+ *
  */
 import React from 'react'
 import { isError } from './utils/is-error'
 import { PERSISTENCE_KEY, style } from './constants'
 import { warn } from './utils/console'
 import { RNTipsModal } from './RNTipsModal'
-import { RNDevToolboxBase } from './RNDevToolboxBase'
-import type { RNDevToolboxState, RNDevToolboxProps } from './RNDevToolboxBase'
+import { RNDevToolboxState, RNDevToolboxProps, RNDevToolboxBase } from './RNDevToolboxBase'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import { RNDevToolboxContext } from './RNDevToolboxContext'
 import memoizeOne from 'memoize-one'
-import type { Action, Indicator } from './types'
+import { Action, Indicator } from './types'
 
-const emptyIndicators = []
-const emptyActions = []
+const emptyIndicators: Array<Indicator> = []
+const emptyActions: Action[] = []
 
 type localState = { defaultActions: Array<Action> }
-type State = RNDevToolboxState<localState>
+type State = localState & RNDevToolboxState
 type LocalProps = {}
 type Props = RNDevToolboxProps<LocalProps>
 
 export class RNDevToolboxDev extends RNDevToolboxBase<LocalProps, localState> {
-  _toggleTipsModalVisible: Function
 
   constructor (props: Props) {
     super(props)
@@ -34,14 +33,13 @@ export class RNDevToolboxDev extends RNDevToolboxBase<LocalProps, localState> {
     this.open = this.open.bind(this)
     this._toggleTipsModalVisible = this._toggleTipsModalVisible.bind(this)
     this.state = {
-      opened: false,
-      useDev: __DEV__,
+      opened: true,//false,
       debug: 'Ready',
-      tipsModalVisible: false,
+      tipsModalVisible: true,//false,
       actions: [],
       indicators: [
-        ['__DEV__', __DEV__ ? 'true' : 'false'],
-        ['NODE_ENV', process.env.NODE_ENV || '']
+        // ['__DEV__', __DEV__ ? 'true' : 'false'],
+        // ['NODE_ENV', process.env.NODE_ENV || '']
       ],
       defaultActions: [{
         name: 'Tips',
@@ -60,8 +58,8 @@ export class RNDevToolboxDev extends RNDevToolboxBase<LocalProps, localState> {
     return { actions }
   }
 
-  computeIndicators = memoizeOne((indicators?: Array<Indicator> = emptyIndicators) => [...this.state.indicators, ...indicators])
-  static computeActions = memoizeOne((actions?: Array<Action> = emptyActions, defaultActions: Array<Action>) => [...defaultActions, ...actions])
+  computeIndicators = memoizeOne((indicators: Indicator[] = emptyIndicators) => [...this.state.indicators, ...indicators])
+  static computeActions = memoizeOne((actions: Action[] = emptyActions, defaultActions: Array<Action>) => [...defaultActions, ...actions])
 
   componentDidMount () {
     super.componentDidMount()
@@ -136,7 +134,7 @@ export class RNDevToolboxDev extends RNDevToolboxBase<LocalProps, localState> {
   }
 
   _formatIndicator (indicator: Indicator) {
-    const [key, value, color] = Array.isArray(indicator) ? indicator : [indicator]
+    const [key, value = undefined, color = undefined] = Array.isArray(indicator) ? indicator : [indicator]
 
     return !Array.isArray(indicator)
       ? (
@@ -193,7 +191,7 @@ export class RNDevToolboxDev extends RNDevToolboxBase<LocalProps, localState> {
           <View style={styles.container}>
             {opened && Toolbox}
             {this.props.children}
-            <TouchableOpacity style={styles.triggerButton} onPress={this.toggle} underlayColor='#ff7043'>
+            <TouchableOpacity style={styles.triggerButton} onPress={this.toggle}>
               <Text style={{ color: 'white' }}>{opened ? '-' : '+'}</Text>
             </TouchableOpacity>
           </View>

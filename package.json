@@ -2,50 +2,68 @@
   "name": "rn-dev-toolbox",
   "version": "0.2.3",
   "main": "dist/index.js",
+  "types": "./src/index.tsx",
   "scripts": {
+    "ready": "npm run tsc && npm test && npm run standard && npm run dist",
     "test": "jest",
-    "flow": "flow",
-    "standard": "standard",
+    "standard": "standard **/*.{tsx,ts,js}",
     "prepublishOnly": "npm run dist",
-    "dist:babel": "rm -rf dist/ && babel src/ --out-dir dist/",
-    "dist": "npm run dist:babel"
+    "dist": "npm run rollup",
+    "rollup": "rollup -c rollup.config.js",
+    "watch": "rollup -c rollup.config.js -w",
+    "tsc": "tsc"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/mbret/rn-dev-toolbox"
   },
   "dependencies": {
-    "hoist-non-react-statics": "3.2.0",
-    "memoize-one": "4.0.3"
+    "rollup-plugin-json": "^3.1.0",
+    "memoize-one": "5.0.0",
+    "hoist-non-react-statics": "^3.2.1"
   },
   "peerDependencies": {
-    "react-native": "0.56.x | 0.57.x"
+    "react-native": "0.56.x | 0.57.x",
+    "react": "16.6.x | 16.7.x"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.5",
-    "babel-eslint": "10.0.1",
+    "@babel/preset-env": "^7.2.3",
+    "@babel/preset-react": "^7.0.0",
+    "@types/hoist-non-react-statics": "^3.0.1",
+    "@types/jest": "^23.3.13",
+    "@types/memoize-one": "^4.1.0",
+    "@types/react": "^16.7.20",
+    "@types/react-native": "^0.57.29",
+    "@types/react-test-renderer": "^16.0.3",
     "babel-jest": "23.6.0",
     "coveralls": "3.0.2",
-    "eslint-plugin-flowtype": "3.2.0",
-    "flow-bin": "0.87.0",
-    "flow-remove-types": "^1.2.3",
+    "eslint-plugin-typescript": "^0.14.0",
     "jest": "23.6.0",
-    "metro-react-native-babel-preset": "0.50.0",
+    "metro-react-native-babel-preset": "0.51.1",
     "react": "16.6.3",
-    "react-native": "0.57.7",
+    "react-native": "0.57.8",
     "react-test-renderer": "16.6.3",
-    "standard": "12.0.1"
+    "rollup": "^1.1.0",
+    "rollup-plugin-babel": "^4.2.0",
+    "rollup-plugin-typescript": "^1.0.0",
+    "standard": "12.0.1",
+    "tslib": "^1.9.3",
+    "typescript": "^3.2.4",
+    "typescript-eslint-parser": "^22.0.0"
   },
   "author": "Maxime Bret",
   "license": "MIT",
   "description": "",
   "standard": {
-    "parser": "babel-eslint",
+    "parser": "typescript-eslint-parser",
     "plugins": [
-      "flowtype"
+      "typescript"
     ],
     "ignore": [
-      "/flow-typed"
+      "/flow-typed",
+      "/test/preprocessor.js",
+      "/types"
     ],
     "globals": [
       "__DEV__"
@@ -54,10 +72,19 @@
   "jest": {
     "verbose": true,
     "preset": "react-native",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ],
     "setupTestFrameworkScriptFile": "<rootDir>/test/setupTests.js",
     "transform": {
-      "^.+\\.(js)$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
+      "^.+\\.(js|ts|tsx)$": "<rootDir>/test/preprocessor.js"
     },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
     "coverageThreshold": {
       "global": {
         "branches": 50,

@@ -1,11 +1,11 @@
+/* eslint no-unused-vars:0 */
 /**
- * @flow
  */
 import React, { PureComponent } from 'react'
 import { style } from './constants'
 import { RNDevToolboxDev } from './RNDevToolboxDev'
 import { RNDevToolboxProd } from './RNDevToolboxProd'
-import type { RNDevToolboxProps } from './RNDevToolboxBase'
+import { RNDevToolboxProps } from './RNDevToolboxBase'
 
 export class RNDevToolbox extends PureComponent<RNDevToolboxProps<{}>> {
   static VALID = style.colors.colorValid
