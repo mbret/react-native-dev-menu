@@ -6,7 +6,7 @@
 [![npm version](https://img.shields.io/npm/v/rn-dev-toolbox.svg)](https://www.npmjs.com/package/rn-dev-toolbox) 
 
 <p align="center">
-  <img src="https://github.com/mbret/rn-dev-toolbox/raw/master/resouces/demo.gif">
+  <img src="https://raw.githubusercontent.com/mbret/rn-dev-toolbox/master/resources/demo.gif">
 </p>
 
 Free your code from ugly logs and code during your debug process and give happiness to your tester team. This package
